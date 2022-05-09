@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ZuS-Sec</title>
+    <link>/</link>
+    <description>Recent content on ZuS-Sec</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 09 May 2022 21:58:48 +0630</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Image Steg</title>
+      <link>/image-steg/</link>
+      <pubDate>Mon, 09 May 2022 21:58:48 +0630</pubDate>
+      
+      <guid>/image-steg/</guid>
+      <description>Image Steganography Created: July 13, 2021 2:29 PM
+ကိုယ် ဝှက်ချင်တဲ့ data (message/file) တစ်ခုခုကို တခြား media (mp3, video, images, text) ထဲမှာ ဝှက်တာမျိုးကို steganography လို့ ခေါ်တယ်။
+Steg system တစ်ခုဖြစ်လာဖို့ဆိုရင် -
+Undetectablility : Data hide ထားမှန်း မသိသာရပါဘူး။
+Robustness : data hide ထားတဲ့ cover file က steg analysis ဒဏ် ဘလောက်ခံနိုင်ရည်ရှိလဲ ဆိုတာပါ။
+ဥပမာ - cover image ကို crop, rotate, noise, filter စတာတွေ လုပ်တဲ့အချိန်မှာ hidden data အပေါ် သက်ရောက်မှုကို ပြောတာပါ။
+(ဒါ ကျွန်တော် နားလည်ထားတာပါ ၊ မှားရင် လာပြောလို့ရပါတယ်။)
+Payload/Embedding capacity : cover file ရဲ့ data လက်ခံနိုင်စွမ်း နဲ့ သုံးမဲ့ steg method ရဲ့ အကောင်းဆုံး data hide နိုင်တဲ့ limit ကို ပြောတာပါ။</description>
+    </item>
+    
+    <item>
+      <title>Steg Note</title>
+      <link>/steg-note/</link>
+      <pubDate>Mon, 09 May 2022 21:33:44 +0630</pubDate>
+      
+      <guid>/steg-note/</guid>
+      <description>ImageSteg notes Created: July 23, 2021 12:44 PM
+Initial Analysis file format verification : file
+view metadata : exiftool, exiv2
+extract some data : strings, cat, bgrep
+More detail about image : stegoveritas
+ LSB Check PNG image : zsteg
+JPG/JPEG image : jsteg
+zsteg sometimes reveal hidden image.
+Syntax : zsteg -E &amp;lt;method&amp;gt; hidden_image.png &amp;gt; reveal_img.png
+Ref : https://szymanski.ninja/en/ctfwriteups/2021/shellctf/hidden-inside-2/
+ File Carving Tools : binwalk, dd, foremost, steghide
+Sometimes a file seems bigger than actual file size because it conceals another file to host file to avoid detect.</description>
+    </item>
+    
+    <item>
+      <title>0xpwn Ctf Write Ups</title>
+      <link>/0xpwn-ctf-write-ups/</link>
+      <pubDate>Mon, 09 May 2022 20:44:28 +0630</pubDate>
+      
+      <guid>/0xpwn-ctf-write-ups/</guid>
+      <description>0xpwn CTF write ups Created: October 26, 2021 8:23 AM
+3 days ago, I participated in 0xpwn&amp;rsquo;s CTF.
+Totally solved 13 challenges.
+Here is my write up. Enjoy!
+Web Apache War Challenge name is a hint.I took a look at apache version.
+There is a CVE(CVE-2021-41773) for apache 2.4.49.
+Here is the exploit.
+# Exploit Title: Apache HTTP Server 2.4.49 - Path Traversal &amp;amp; Remote Code Execution (RCE) # Date: 10/05/2021 # Exploit Author: Lucas Souza https://lsass.</description>
+    </item>
+    
+    <item>
+      <title>Communication between Server and Browser</title>
+      <link>/communication-between-browser-and-server/</link>
+      <pubDate>Mon, 09 May 2022 20:43:49 +0630</pubDate>
+      
+      <guid>/communication-between-browser-and-server/</guid>
+      <description>How HTTP/HTTPS works Created: July 13, 2021 2:30 PM
+HTTP/HTTPS Hypertext Transfer Protocol ( HTTP ) ဆိုတာ World Wide Web ပေါ်က data တွေနဲ့ Browser ကို ဆက်သွယ်ပေးတဲ့ အခြေခံ Application Protocol တစ်ခုဖြစ်တယ််။
+Hypertext Transfer Protocol Secure (HTTPS) ကျတော့ SSL/TLS protocol ကို သုံးပြီး encrypted လုပ်ထားတယ်။
+ HTTP message Client (browser) နဲ့ server ကြားမှာ data တွေကို HTTP message တွေနဲ့ Transfer လုပ်ကြတယ်။
+HTTP message မှာ request နဲ့ response ဆိုပြီး ၂မျိုးရှိတယ်။
+ Action တစ်ခုခုလုပ်ချင်လို့ server ဆီကို client (browser) ဘက်ကနေ sent လိုက်တဲ့ HTTP message တစ်ခုကို HTTP request လို့ ခေါ်တယ်။  GET / HTTP/1.</description>
+    </item>
+    
+    <item>
+      <title>Mongodb Basics</title>
+      <link>/mongodb-basics/</link>
+      <pubDate>Mon, 09 May 2022 20:41:49 +0630</pubDate>
+      
+      <guid>/mongodb-basics/</guid>
+      <description>MongoDB Basics Created: July 21, 2021 4:41 PM
+What is Database  A database is a structured way to store and access data.  What is NoSQL Database  A database that stores data in an organizing way without using table.  What is MongoDB Database  MongoDB is a NoSQL document database. Data are stored as documents. Documents are turn stored in what we called collections. Collection is an organized store of documents in MongoDB usually with common fields between documents.</description>
+    </item>
+    
+    <item>
+      <title>About Me</title>
+      <link>/about-me/</link>
+      <pubDate>Mon, 09 May 2022 17:40:47 +0630</pubDate>
+      
+      <guid>/about-me/</guid>
+      <description>Thwin Htet Win Computer Science Student who interested in Information Security, Application Security and Penetration Testing.
+Education Bachelor&amp;rsquo;s Degree, Computer Science, University of Mandalay - 2nd Year
+Projects Location-based Class Attendance System using Django Framework, JavaScript, Bootstrap and SQLite3.
+Steganography program implemented in LSB method
+Acknowledgement Zoho - Security Researcher Hall of Fame
+Contact Me Gmail : thwinhtetwin.me@gmail.com
+HackTheBox : ZuS
+LinkedIn : Thwin Htet Win
+GitHub : ThwinHtetWin
+Twitter : @thwinhtet_</description>
+    </item>
+    
+    <item>
+      <title>Memory Layout of C program</title>
+      <link>/memory-layout-of-c-program-in-details/</link>
+      <pubDate>Sun, 08 May 2022 21:18:20 +0630</pubDate>
+      
+      <guid>/memory-layout-of-c-program-in-details/</guid>
+      <description>Memory Layout of C program Created: June 7, 2021 7:49 PM
+I think you guys are already familiar with the fundamentals of C programming.
+Most of us already learnt what is stack, heap, memory but university was all text books.
+Now,let&amp;rsquo;s study about memory layout of C program.
+Although we are not going to study about Assembly, we will introduce some Assembly Instructions and debugging to understand deeply.
+Don&amp;rsquo;t worry.just a few things.</description>
+    </item>
+    
+  </channel>
+</rss>

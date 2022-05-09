@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+  <meta name="generator" content="Hugo 0.96.0" />
+
+  <title>Memory Layout of C program | ZuS-Sec</title>
+  <meta name="description"
+        content="someone in the crowd">
+
+  
+  <meta name="robots" content="noindex, nofollow">
+  
+
+  
+
+  
+  
+  
+  <link href="/output/css/main.9e8d1056a63a3317e922cfe3ba7cd57260153374bec1a569d1dcff77084f28d1.css" integrity="sha256-no0QVqY6MxfpIs/junzVcmAVM3S&#43;waVp0dz/dwhPKNE=" rel="stylesheet" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Raleway:400,200,600' rel='stylesheet' type='text/css'>
+  <meta property="og:title" content="Memory Layout of C program" />
+<meta property="og:description" content="Memory Layout of C program Created: June 7, 2021 7:49 PM
+I think you guys are already familiar with the fundamentals of C programming.
+Most of us already learnt what is stack, heap, memory but university was all text books.
+Now,let&rsquo;s study about memory layout of C program.
+Although we are not going to study about Assembly, we will introduce some Assembly Instructions and debugging to understand deeply.
+Don&rsquo;t worry.just a few things." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/memory-layout-of-c-program-in-details/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-05-08T21:18:20+06:30" />
+<meta property="article:modified_time" content="2022-05-08T21:18:20+06:30" />
+
+<meta itemprop="name" content="Memory Layout of C program">
+<meta itemprop="description" content="Memory Layout of C program Created: June 7, 2021 7:49 PM
+I think you guys are already familiar with the fundamentals of C programming.
+Most of us already learnt what is stack, heap, memory but university was all text books.
+Now,let&rsquo;s study about memory layout of C program.
+Although we are not going to study about Assembly, we will introduce some Assembly Instructions and debugging to understand deeply.
+Don&rsquo;t worry.just a few things."><meta itemprop="datePublished" content="2022-05-08T21:18:20+06:30" />
+<meta itemprop="dateModified" content="2022-05-08T21:18:20+06:30" />
+<meta itemprop="wordCount" content="2086">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Memory Layout of C program"/>
+<meta name="twitter:description" content="Memory Layout of C program Created: June 7, 2021 7:49 PM
+I think you guys are already familiar with the fundamentals of C programming.
+Most of us already learnt what is stack, heap, memory but university was all text books.
+Now,let&rsquo;s study about memory layout of C program.
+Although we are not going to study about Assembly, we will introduce some Assembly Instructions and debugging to understand deeply.
+Don&rsquo;t worry.just a few things."/>
+
+
+  
+</head>
+
+<body class="bg-gray-800 font-sans text-gray-400 subpixel-antialiased flex flex-col h-screen justify-between tracking-wide">
+  <header class="bg-gray-700 py-3">
+    <div class="container flex justify-between items-center flex-wrap">
+  <div class="text-lg font-bold">
+    <a href="/">
+      
+      ZuS-Sec
+      
+    </a>
+  </div>
+  <div class="flex items-center flex-wrap">
+    
+
+    
+    <ul class="flex items-center flex-wrap">
+      
+      <li class="ml-4">
+        <a class="hover:text-white" href="/about-me/" title="About Me page">About Me</a>
+      </li>
+      
+      <li class="ml-4">
+        <a class="hover:text-white" href="/post/" title="Posts page">Posts</a>
+      </li>
+      
+    </ul>
+    
+  </div>
+</div>
+
+  </header>
+  
+  <main class="container mb-auto mt-20">
+  
+  <article>
+    <header class="text-center py-20">
+      <h1 class="text-5xl pb-2">Memory Layout of C program</h1>
+
+      <div class="flex place-content-center">
+        
+
+        <time datetime="2022-05-08T21:18:20+06:30">
+          May 8, 2022
+        </time>
+      </div>
+    </header>
+
+    <section>
+      <h1 id="memory-layout-of-c-program">Memory Layout of C program</h1>
+<p>Created: June 7, 2021 7:49 PM</p>
+<p>I think you guys are already familiar with the fundamentals of C programming.</p>
+<p>Most of us already learnt what is stack, heap, memory but university was all text books.</p>
+<p>Now,let&rsquo;s study about memory layout of C program.</p>
+<p>Although we are not going to study about Assembly, we will introduce some Assembly Instructions and debugging to understand deeply.</p>
+<p>Don&rsquo;t worry.just a few things.You will get it!</p>
+<p>Before we begin, you should familiar with Pointer, dereference and address-of operators.</p>
+<h2 id="pointer-dereference-and-address-of-operators">Pointer, Dereference and address-of Operators</h2>
+<h3 id="pointer">Pointer</h3>
+<p>Pointer is defined by prepending an asterisk (*) to a variable name.</p>
+<p>Pointer points to memory address of its referenced variable.</p>
+<h3 id="address-of-operator">Address-of operator</h3>
+<p><em>address-of</em> operator is defined by  prepending an ampersand (&amp;)  to a variable name.</p>
+<p><em>address-of</em> operator is used in conjunction with pointer.</p>
+<p>a<em>ddress-of</em> operator contains memory address of that variable.</p>
+<h3 id="dereference-operator">Dereference operator</h3>
+<p><em>dereference</em> operator is defined by prepending an asterisk (*) to a variable name.</p>
+<p><em>dereference</em> will return the data found in the address the pointer is pointing to.</p>
+<p>[ pointer* will return memory address,while dereference* will return the data found in that address ]</p>
+<p>Study the following code and output.</p>
+<p>If you understand the program, write a similar one to ensure your knowledge.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#999;font-style:italic">//ptr-addr-deref.c
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdlib.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdio.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">int</span> int_var;
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">int</span> *int_ptr;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	int_var = <span style="color:#3677a9">1337</span>;
+</span></span><span style="display:flex;"><span>	int_ptr = &amp;int_var;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;int_var is located at %p and contains %d</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>,&amp;int_var,int_var);
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;int_ptr is located at %p , contains %p and points to %d</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>,&amp;int_ptr,int_ptr,*int_ptr); <span style="color:#999;font-style:italic">// here *int_ptr is dereference.
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@zus:Desktop/memory_layout <span style="color:#999;font-style:italic"># ./ptr-addr-deref </span>
+</span></span><span style="display:flex;"><span>int_var is located at 0xff97758c and contains <span style="color:#3677a9">1337</span>
+</span></span><span style="display:flex;"><span>int_ptr is located at 0xff977588 , contains 0xff97758c and points to <span style="color:#3677a9">1337</span>
+</span></span></code></pre></div><h2 id="the-memory">The Memory</h2>
+<p>When a program is executed,the Operating System creates address space for that program and maps the elements of program into memory.</p>
+<p>Then compiled program&rsquo;s segments are loaded into that newly created address space.</p>
+<p>Everything about program&rsquo;s requirements are included in that address space.</p>
+<p>Now, we need to know a little bit about how a program&rsquo;s memory is laid out.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Low memory addresses (0x08000000) :
+</span></span><span style="display:flex;"><span>                                        ------------------------
+</span></span><span style="display:flex;"><span>                                        |    text segment      |
+</span></span><span style="display:flex;"><span>                                        ------------------------
+</span></span><span style="display:flex;"><span>                                        |    data segment      |
+</span></span><span style="display:flex;"><span>                                        ------------------------
+</span></span><span style="display:flex;"><span>                                        |    bss segment       |
+</span></span><span style="display:flex;"><span>                                        ------------------------
+</span></span><span style="display:flex;"><span>                                        |    heap segment      | ↓ heap grows downward (to higher memory addresses)
+</span></span><span style="display:flex;"><span>                                        ------------------------
+</span></span><span style="display:flex;"><span>                                        |    unused memory     |
+</span></span><span style="display:flex;"><span>                                        ------------------------
+</span></span><span style="display:flex;"><span>                                        |    stack segment     | ↑ stack grows upward (to lower memory addresses)
+</span></span><span style="display:flex;"><span>                                        ------------------------
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>High memory addresses (0xbfffffff) :
+</span></span></code></pre></div><h2 id="memory-segmentation">Memory Segmentation</h2>
+<p>The compiled program&rsquo;s memory is divided into 5 segments.</p>
+<ol>
+<li>.text</li>
+<li>.data</li>
+<li>.bss</li>
+<li>.heap</li>
+<li>.stack</li>
+</ol>
+<h3 id="text-segment">text segment</h3>
+<p>.<em>text</em> segment is used to locate assembly instructions.</p>
+<p>.<em>text</em> segment is read-only segment.</p>
+<p>.<em>text</em> segment is fixed-size segment.</p>
+<h3 id="data-segment">data segment</h3>
+<p>.<em>data</em> segment is used to store initialized global variables and initialized static variables.</p>
+<p>.<em>data</em> segment is writable segment.</p>
+<p>.<em>data</em> segment is fixed-size segment.</p>
+<h3 id="bss-segment">bss segment</h3>
+<p>.<em>bss</em> segment is used to store uninitialized global variables and uninitialized static variables.</p>
+<p>.<em>bss</em> segment is writable segment.</p>
+<p>.<em>bss</em> segment is fixed-size segment.</p>
+<h3 id="heap-segment">heap segment</h3>
+<p>The heap is <em>First-In-First-Out</em> (FIFO) data structure.</p>
+<p>.<em>heap</em> segment can be directly controlled by a programmer.</p>
+<p>.<em>heap</em> segment is not fixed-size segment.</p>
+<p>.<em>heap</em> segment grows downward (to higher memory addresses).</p>
+<h3 id="stack-segment">stack segment</h3>
+<p>The stack is <em>Last-In-First-Out</em> (LIFO) also called <em>First-In-Last-Out</em> (FILO) data structure.</p>
+<p>.<em>stack</em> segment is used to store local variables,function arguments and so on.</p>
+<p>.<em>stack</em> segment is not fixed-size segment.</p>
+<hr>
+<p>Study the following code and take a look at output memory addresses.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#999;font-style:italic">//memory_segments.c
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic">//demo of memory segments
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>Memory segments
+</span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdio.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdlib.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> global_var; <span style="color:#999;font-style:italic">//this variable will store in bss segment because this is a global variable. 
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">int</span> global_initialized_var = <span style="color:#3677a9">1337</span>; <span style="color:#999;font-style:italic">//this variable will store in data segment because this is a global initialized variable. 
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">test_function</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">int</span> stack_var; <span style="color:#999;font-style:italic">//this variable will store in stack because this is a local function.
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>	printf(<span style="color:#ed9d13">&#34;[.stack segment]-----------------------------</span><span style="color:#ed9d13">\n\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;test_function&#39;s stack_var is located at %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>,&amp;stack_var);
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">int</span> stack_var; <span style="color:#999;font-style:italic">//this variable will store in stack because this is a local function.
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>	<span style="color:#6ab825;font-weight:bold">static</span> <span style="color:#6ab825;font-weight:bold">int</span> static_var; <span style="color:#999;font-style:italic">//this variable will store in bss segment because this is a static variable. 
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>	<span style="color:#6ab825;font-weight:bold">static</span> <span style="color:#6ab825;font-weight:bold">int</span> static_initialized_var = <span style="color:#3677a9">100</span>; <span style="color:#999;font-style:italic">//this variable will store in data segment because this is a static initialized variable. 
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">int</span> *heap_var_ptr;
+</span></span><span style="display:flex;"><span>	heap_var_ptr = (<span style="color:#6ab825;font-weight:bold">int</span> *)malloc(<span style="color:#3677a9">4</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#999;font-style:italic">//remember that we can control the heap segment and allocate?
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">[.data segment]------------------------------</span><span style="color:#ed9d13">\n\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;global_initialized_var is at %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>,&amp;global_initialized_var);
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;static_initialized_var is at %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>,&amp;static_initialized_var);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;[.bss segment]-------------------------------</span><span style="color:#ed9d13">\n\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;global_var is at %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>,&amp;global_var);
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;static_var is at %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>,&amp;static_var);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;[.heap segment]------------------------------</span><span style="color:#ed9d13">\n\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;heap_var is at %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>,heap_var_ptr);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	test_function();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@zus:Desktop/memory_layout <span style="color:#999;font-style:italic"># ./memory_segments              </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[.data segment]------------------------------
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>global_initialized_var is at 0x5659f028
+</span></span><span style="display:flex;"><span>static_initialized_var is at 0x5659f02c
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[.bss segment]-------------------------------
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>global_var is at 0x5659f034
+</span></span><span style="display:flex;"><span>static_var is at 0x5659f038
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[.heap segment]------------------------------
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>heap_var is at 0x56fa61a0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[.stack segment]-----------------------------
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>test_function<span style="color:#a61717;background-color:#e3d2d2">&#39;</span>s stack_var is located at 0xff967e9c
+</span></span></code></pre></div><p>As we learnt,lower memory addresses are located at the higher places.</p>
+<p>Check the output&rsquo;s content.</p>
+<p>Variables inside .<em>data</em> segment have the lower addresses than the variables&rsquo; addresses which are located within other segments.</p>
+<p>Now, you understand how memory laid out when a program is executed. Keep reading.</p>
+<h2 id="assembly">Assembly</h2>
+<p>Assembly language is a low-level programming language for a computer.</p>
+<p>We will use 32-bit Intel processor.</p>
+<p>The x86 processor ( 32-bit processor ) has several registers, which are like internal variables for the processor.</p>
+<p><em>Registers</em> are responsible for manipulations that allow modern computers to function, and can be manipulated with assembly instructions.</p>
+<p><em>Registers</em> can be grouped into four categories.</p>
+<ol>
+<li>General purpose</li>
+<li>Segment</li>
+<li>Control</li>
+</ol>
+<p>The most critical registers are the General registers.In these, there are further subdivisions into Data registers, Pointer registers, and Index registers.</p>
+<h3 id="general-purpose-registers">General Purpose Registers</h3>
+<ul>
+<li>
+<p>Data registers</p>
+<p>EAX ( Accumulator )</p>
+<p>EBX ( Base )</p>
+<p>ECX ( Counter )</p>
+<p>EDX ( Data )</p>
+</li>
+<li>
+<p>Pointer registers</p>
+<p>ESP ( Extended Stack Pointer )</p>
+<p>EBP ( Extended Base Pointer )</p>
+<p>EIP  ( Extended Instruction Pointer )</p>
+</li>
+<li>
+<p>Index registers</p>
+<p>ESI **( Extended Source Index )</p>
+<p>EDI **( Extended Destination Index )</p>
+</li>
+</ul>
+<p>If you are familiar with General Purpose Registers, you can examine memory addresses.</p>
+<p>So,let&rsquo;s skip some parts of assembly.</p>
+<p>The assembly instructions in Intel syntax generally follow this style:</p>
+<p>operation <!-- raw HTML omitted --> , <!-- raw HTML omitted --></p>
+<p>The destination and source values will either be a register, a memory address, or a value.</p>
+<p>operations :</p>
+<p><strong>mov</strong> operation will <strong>move</strong> a value from source to destination.</p>
+<p><strong>sub</strong> operation will <strong>subtract.</strong></p>
+<p><strong>inc</strong> operation will <strong>increase.</strong></p>
+<p><strong>ret</strong> operation will <strong>return</strong> address**.**</p>
+<p><strong>cmp</strong> operation will <strong>compare</strong> values.</p>
+<p><strong>jle</strong> operation, <em>jump-if-less-than-or-equal</em>, referring to the result of the previous comparison.</p>
+<p><strong>jmp</strong> operation will <strong>jump</strong> to another value.</p>
+<p>For example :</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>804838b:    <span style="color:#3677a9">83</span> 7d <span style="color:#24909d">fc</span> <span style="color:#3677a9">09</span>     cmp      DWORD PTR [ebp-4],0x9
+</span></span><span style="display:flex;"><span>804838f:    7e <span style="color:#3677a9">02</span>           jle      <span style="color:#3677a9">8048393</span> &lt;main+0x1f&gt;
+</span></span><span style="display:flex;"><span>8048391:    eb <span style="color:#3677a9">13</span>           jmp      80483a6 &lt;main+0x32&gt;
+</span></span></code></pre></div><p>This assembly instruction will compare 4-byte value located at the address ebp-4 with number 9.</p>
+<p>if that value is less than or equal to  ( distinction ),it will jump to address 8048393,otherwise,jump to 80483a6.</p>
+<p>P.S There left many operations.You should read yourself.</p>
+<h2 id="debugger">Debugger</h2>
+<p>It&rsquo;s better to see for yourself.Let&rsquo;s use a debugger.</p>
+<p>Debuggers are used by programmers to step through compiled programs, examine program memory, and view processor registers.</p>
+<p>Debuggers can view the execution from all angles, pause it, and change anything along the way.</p>
+<p>We will use <em>GNU debugger,GDB</em>.</p>
+<p>We would like to use intel syntax.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@zus:Desktop/memory_layout <span style="color:#999;font-style:italic"># echo &#34;set disassembly-flavor intel&#34; &gt; ~/.gdbinit</span>
+</span></span><span style="display:flex;"><span>root@zus:Desktop/memory_layout <span style="color:#999;font-style:italic"># cat ~/.gdbinit</span>
+</span></span><span style="display:flex;"><span><span style="color:#24909d">set</span> disassembly-flavor intel
+</span></span><span style="display:flex;"><span>root@zus:Desktop/memory_layout <span style="color:#999;font-style:italic">#</span>
+</span></span></code></pre></div><p>Now,GDB is configured to use Intel syntax.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">stack_function</span>(<span style="color:#6ab825;font-weight:bold">int</span> a, <span style="color:#6ab825;font-weight:bold">int</span> b, <span style="color:#6ab825;font-weight:bold">int</span> c, <span style="color:#6ab825;font-weight:bold">int</span> d)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() 
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>        stack_function(<span style="color:#3677a9">1</span>, <span style="color:#3677a9">2</span>, <span style="color:#3677a9">3</span>, <span style="color:#3677a9">4</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This simple program first declares a function named <em>stack_function</em> which expects 4 integer variables as arguments,then <em>main</em> function called that function.</p>
+<p>Remember .<em>stack</em> segment stores function arguments.</p>
+<p>Now, compile this program with GCC compiler.</p>
+<p>The <code>-g</code> flag can be used by the GCC compiler to include extra debugging information ,which will give GDB access to the source code.</p>
+<p>To see the source code on GDB,use <code>list</code> cmd.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@zus:Desktop/memory_layout <span style="color:#999;font-style:italic"># gdb -q stack                </span>
+</span></span><span style="display:flex;"><span>Reading symbols from stack...
+</span></span><span style="display:flex;"><span>(gdb) list
+</span></span><span style="display:flex;"><span><span style="color:#3677a9">1</span>       void stack_function(int a, int b, int c, int d)
+</span></span><span style="display:flex;"><span><span style="color:#3677a9">2</span>       {
+</span></span><span style="display:flex;"><span><span style="color:#3677a9">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#3677a9">4</span>       }
+</span></span><span style="display:flex;"><span><span style="color:#3677a9">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#3677a9">6</span>       int main() 
+</span></span><span style="display:flex;"><span><span style="color:#3677a9">7</span>       {
+</span></span><span style="display:flex;"><span><span style="color:#3677a9">8</span>               stack_function(1, 2, 3,4);
+</span></span><span style="display:flex;"><span><span style="color:#3677a9">9</span>       }
+</span></span><span style="display:flex;"><span>(gdb)
+</span></span></code></pre></div><p>To disassemble in GDB, use <code>disass</code> or <code>disassemble</code> command.</p>
+<p>Let&rsquo;s disassemble the <em>main</em> function.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>(gdb) disass main
+</span></span><span style="display:flex;"><span>Dump of assembler code <span style="color:#6ab825;font-weight:bold">for</span> <span style="color:#6ab825;font-weight:bold">function</span> main:
+</span></span><span style="display:flex;"><span>   0x00001199 &lt;+0&gt;:     push   ebp
+</span></span><span style="display:flex;"><span>   0x0000119a &lt;+1&gt;:     mov    ebp,esp
+</span></span><span style="display:flex;"><span>   0x0000119c &lt;+3&gt;:     call   0x11bd &lt;__x86.get_pc_thunk.ax&gt;
+</span></span><span style="display:flex;"><span>   0x000011a1 &lt;+8&gt;:     add    eax,0x2e5f
+</span></span><span style="display:flex;"><span>   0x000011a6 &lt;+13&gt;:    push   0x4
+</span></span><span style="display:flex;"><span>   0x000011a8 &lt;+15&gt;:    push   0x3
+</span></span><span style="display:flex;"><span>   0x000011aa &lt;+17&gt;:    push   0x2
+</span></span><span style="display:flex;"><span>   0x000011ac &lt;+19&gt;:    push   0x1
+</span></span><span style="display:flex;"><span>   0x000011ae &lt;+21&gt;:    call   0x1189 &lt;stack_function&gt;
+</span></span><span style="display:flex;"><span>   0x000011b3 &lt;+26&gt;:    add    esp,0x10
+</span></span><span style="display:flex;"><span>   0x000011b6 &lt;+29&gt;:    mov    eax,0x0
+</span></span><span style="display:flex;"><span>   0x000011bb &lt;+34&gt;:    leave  
+</span></span><span style="display:flex;"><span>   0x000011bc &lt;+35&gt;:    ret    
+</span></span><span style="display:flex;"><span>End of assembler dump.
+</span></span><span style="display:flex;"><span>(gdb)
+</span></span></code></pre></div><p>This is the dump of assembler code for <em>main</em> function.</p>
+<p>We are not going to explain how to use debugger in depth.</p>
+<p>For more information, read the official documentation.</p>
+<h2 id="stack">Stack</h2>
+<p>Stack is <em>Last-In-First-Out</em> (LIFO) data structure.</p>
+<p>The stack starts with a high address and grows towards lower memory addresses as values are added.</p>
+<p>The Base Pointer points to the beginning (base) of the stack.</p>
+<p>The Stack Pointer points to the top of the stack.</p>
+<p>Data is written to the stack segment by using <code>PUSH</code> instruction.</p>
+<p>Data is removed from the stack segment by using <code>POP</code> instruction.</p>
+<p>Let&rsquo;s see it.</p>
+<p>Run the following program in GDB and learn how they really work.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#999;font-style:italic">//stack.c
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">stack_function</span>(<span style="color:#6ab825;font-weight:bold">int</span> a, <span style="color:#6ab825;font-weight:bold">int</span> b, <span style="color:#6ab825;font-weight:bold">int</span> c, <span style="color:#6ab825;font-weight:bold">int</span> d)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() 
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>        stack_function(<span style="color:#3677a9">1</span>, <span style="color:#3677a9">2</span>, <span style="color:#3677a9">3</span>, <span style="color:#3677a9">4</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@zus:Desktop/memory_layout <span style="color:#999;font-style:italic"># gdb -q ./stack</span>
+</span></span><span style="display:flex;"><span>Reading symbols from ./stack...
+</span></span><span style="display:flex;"><span>(gdb) disass main
+</span></span><span style="display:flex;"><span>Dump of assembler code <span style="color:#6ab825;font-weight:bold">for</span> <span style="color:#6ab825;font-weight:bold">function</span> main:
+</span></span><span style="display:flex;"><span>   0x00001199 &lt;+0&gt;:     push   ebp
+</span></span><span style="display:flex;"><span>   0x0000119a &lt;+1&gt;:     mov    ebp,esp
+</span></span><span style="display:flex;"><span>   0x0000119c &lt;+3&gt;:     call   0x11bd &lt;__x86.get_pc_thunk.ax&gt;
+</span></span><span style="display:flex;"><span>   0x000011a1 &lt;+8&gt;:     add    eax,0x2e5f
+</span></span><span style="display:flex;"><span>   0x000011a6 &lt;+13&gt;:    push   0x4
+</span></span><span style="display:flex;"><span>   0x000011a8 &lt;+15&gt;:    push   0x3
+</span></span><span style="display:flex;"><span>   0x000011aa &lt;+17&gt;:    push   0x2
+</span></span><span style="display:flex;"><span>   0x000011ac &lt;+19&gt;:    push   0x1
+</span></span><span style="display:flex;"><span>   0x000011ae &lt;+21&gt;:    call   0x1189 &lt;stack_function&gt;
+</span></span><span style="display:flex;"><span>   0x000011b3 &lt;+26&gt;:    add    esp,0x10
+</span></span><span style="display:flex;"><span>   0x000011b6 &lt;+29&gt;:    mov    eax,0x0
+</span></span><span style="display:flex;"><span>   0x000011bb &lt;+34&gt;:    leave  
+</span></span><span style="display:flex;"><span>   0x000011bc &lt;+35&gt;:    ret    
+</span></span><span style="display:flex;"><span>End of assembler dump.
+</span></span><span style="display:flex;"><span>(gdb)
+</span></span></code></pre></div><p>Since we call argument 1,2,3,4 in sequence, integer 1 (0x1) is pushed first, becomes the last item and the stack grows toward lower memory addresses.</p>
+<p>Remember .<em>stack</em> segment is  <em>Last-In-First-Out</em> (LIFO) and is used to store local variables,function arguments.</p>
+<h2 id="heap">Heap</h2>
+<p>The heap is <em>First-In-First-Out</em> (FIFO) data structure.</p>
+<p>The heap starts with a low address and grows downward to high memory addresses as values are added.</p>
+<p>Blocks of memory in .<em>heap</em> segment can be allocated and used for whatever we need.</p>
+<p>Allocating memory on the heap is done using the <code>malloc()</code> function.</p>
+<p>This function accepts size as its only argument and reserves that much space in .<em>heap</em> segment, return the address to the start of this memory as void pointer.</p>
+<p>malloc function returns void pointer which points to newly created memory address ,so we need to typecast to appropriate data type.</p>
+<p>The corresponding deallocation function is <code>free()</code> function.</p>
+<p>This function accepts a pointer as its only argument and free that memory space on .<em>heap</em> segment.</p>
+<p>These functions are demonstrated below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#999;font-style:italic">//heap.c
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdio.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdlib.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;string.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">int</span> mem_size = <span style="color:#3677a9">20</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">char</span> *char_ptr;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	char_ptr = (<span style="color:#6ab825;font-weight:bold">char</span> *)malloc(mem_size); <span style="color:#999;font-style:italic">// typecast malloc&#39;s return address
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>	printf(<span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">[+] Allocating %d bytes on heap.</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, mem_size);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	strcpy(char_ptr,<span style="color:#ed9d13">&#34;Hello World!&#34;</span>);
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;    char_ptr points to ( %p ) ~&gt; %s</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>,char_ptr,char_ptr);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">[-] Freeing char_ptr&#39;s memory</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>	free(char_ptr);
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;    char_ptr points to ( %p ) ~&gt; %s</span><span style="color:#ed9d13">\n\n</span><span style="color:#ed9d13">&#34;</span>,char_ptr,char_ptr);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@zus:Desktop/memory_layout <span style="color:#999;font-style:italic"># ./heap      </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[+] Allocating <span style="color:#3677a9">20</span> bytes on heap.
+</span></span><span style="display:flex;"><span>    char_ptr points to ( 0x5686c1a0 ) ~&gt; Hello World!
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[-] Freeing char_ptr<span style="color:#a61717;background-color:#e3d2d2">&#39;</span>s memory
+</span></span><span style="display:flex;"><span>    char_ptr points to ( 0x5686c1a0 ) ~&gt; 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>root@zus:Desktop/memory_layout <span style="color:#999;font-style:italic">#</span>
+</span></span></code></pre></div><p>Here we add some data to the heap segment using <code>malloc()</code> function and then remove using <code>free()</code> function.</p>
+<p>The following part will study how the heap segment store data in memory.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdio.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdlib.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;string.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">Heap is FIFO [ First-In-First-Out ] data structure.</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">Heap grows downward (towards higher addresses.)</span><span style="color:#ed9d13">\n\n</span><span style="color:#ed9d13">Low memory address</span><span style="color:#ed9d13">\n\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">int</span> *int_ptr,*int_ptr1,*int_ptr2;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">int</span> memory_size;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	memory_size = <span style="color:#3677a9">10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	int_ptr = (<span style="color:#6ab825;font-weight:bold">int</span> *)malloc(memory_size);
+</span></span><span style="display:flex;"><span>	*int_ptr = <span style="color:#3677a9">127</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;[ Allocated %d bytes of memory on heap ] : int_ptr    (0x%x) ~&gt; %d</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>,memory_size,int_ptr,*int_ptr );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	int_ptr1 = (<span style="color:#6ab825;font-weight:bold">int</span> *)malloc(memory_size);
+</span></span><span style="display:flex;"><span>	*int_ptr1 = <span style="color:#3677a9">10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;[ Allocated %d bytes of memory on heap ] : int_ptr1   (0x%x) ~&gt; %d</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>,memory_size,int_ptr1,*int_ptr1 );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	int_ptr2 = (<span style="color:#6ab825;font-weight:bold">int</span> *)malloc(memory_size);
+</span></span><span style="display:flex;"><span>	*int_ptr2 = <span style="color:#3677a9">1337</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;[ Allocated %d bytes of memory on heap ] : int_ptr2   (0x%x) ~&gt; %d</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>,memory_size,int_ptr2,*int_ptr2 );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">High memory address</span><span style="color:#ed9d13">\n\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@zus:Desktop/memory_layout <span style="color:#999;font-style:italic"># ./heap_FIFO </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Heap is FIFO [ First-In-First-Out ] data structure.
+</span></span><span style="display:flex;"><span>Heap grows downward (towards higher addresses.)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Low memory address
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[ Allocated <span style="color:#3677a9">10</span> bytes of memory on heap ] : int_ptr    (0x568055b0) ~&gt; <span style="color:#3677a9">127</span>
+</span></span><span style="display:flex;"><span>[ Allocated <span style="color:#3677a9">10</span> bytes of memory on heap ] : int_ptr1   (0x568055c0) ~&gt; <span style="color:#3677a9">10</span>
+</span></span><span style="display:flex;"><span>[ Allocated <span style="color:#3677a9">10</span> bytes of memory on heap ] : int_ptr2   (0x568055d0) ~&gt; <span style="color:#3677a9">1337</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>High memory address
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>root@zus:Desktop/memory_layout <span style="color:#999;font-style:italic">#</span>
+</span></span></code></pre></div><p>Take a look at those addresses (Highlight in red) on this output.</p>
+<p>Every time we call <code>malloc()</code> function, heap grows toward higher addresses.</p>
+<p>These are all I understand.</p>
+<p>Try Harder.</p>
+
+      <ul class="flex list-none mt-20 ml-0 p-0">
+  
+</ul>
+
+    </section>
+
+    <div class="mt-20">
+
+
+</div>
+  </article>
+</main>
+  <footer class="container mt-20 py-10 border-t border-gray-700">
+    <a class="flex items-center">
+  Made with &lt;3 by ZuS. 
+  <br>Powered by Hugo<a href="https://gohugo.io/">
+</a>
+
+
+  </footer>
+</body>
+
+</html>

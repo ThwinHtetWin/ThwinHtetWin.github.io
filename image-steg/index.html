@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+  <meta name="generator" content="Hugo 0.96.0" />
+
+  <title>Image Steg | ZuS-Sec</title>
+  <meta name="description"
+        content="someone in the crowd">
+
+  
+  <meta name="robots" content="noindex, nofollow">
+  
+
+  
+
+  
+  
+  
+  <link href="/output/css/main.9e8d1056a63a3317e922cfe3ba7cd57260153374bec1a569d1dcff77084f28d1.css" integrity="sha256-no0QVqY6MxfpIs/junzVcmAVM3S&#43;waVp0dz/dwhPKNE=" rel="stylesheet" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Raleway:400,200,600' rel='stylesheet' type='text/css'>
+  <meta property="og:title" content="Image Steg" />
+<meta property="og:description" content="Image Steganography Created: July 13, 2021 2:29 PM
+ကိုယ် ဝှက်ချင်တဲ့ data (message/file) တစ်ခုခုကို တခြား media (mp3, video, images, text) ထဲမှာ ဝှက်တာမျိုးကို steganography လို့ ခေါ်တယ်။
+Steg system တစ်ခုဖြစ်လာဖို့ဆိုရင် -
+Undetectablility : Data hide ထားမှန်း မသိသာရပါဘူး။
+Robustness : data hide ထားတဲ့ cover file က steg analysis ဒဏ် ဘလောက်ခံနိုင်ရည်ရှိလဲ ဆိုတာပါ။
+ဥပမာ - cover image ကို crop, rotate, noise, filter စတာတွေ လုပ်တဲ့အချိန်မှာ hidden data အပေါ် သက်ရောက်မှုကို ပြောတာပါ။
+(ဒါ ကျွန်တော် နားလည်ထားတာပါ ၊ မှားရင် လာပြောလို့ရပါတယ်။)
+Payload/Embedding capacity : cover file ရဲ့ data လက်ခံနိုင်စွမ်း နဲ့ သုံးမဲ့ steg method ရဲ့ အကောင်းဆုံး data hide နိုင်တဲ့ limit ကို ပြောတာပါ။" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/image-steg/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-05-09T21:58:48+06:30" />
+<meta property="article:modified_time" content="2022-05-09T21:58:48+06:30" />
+
+<meta itemprop="name" content="Image Steg">
+<meta itemprop="description" content="Image Steganography Created: July 13, 2021 2:29 PM
+ကိုယ် ဝှက်ချင်တဲ့ data (message/file) တစ်ခုခုကို တခြား media (mp3, video, images, text) ထဲမှာ ဝှက်တာမျိုးကို steganography လို့ ခေါ်တယ်။
+Steg system တစ်ခုဖြစ်လာဖို့ဆိုရင် -
+Undetectablility : Data hide ထားမှန်း မသိသာရပါဘူး။
+Robustness : data hide ထားတဲ့ cover file က steg analysis ဒဏ် ဘလောက်ခံနိုင်ရည်ရှိလဲ ဆိုတာပါ။
+ဥပမာ - cover image ကို crop, rotate, noise, filter စတာတွေ လုပ်တဲ့အချိန်မှာ hidden data အပေါ် သက်ရောက်မှုကို ပြောတာပါ။
+(ဒါ ကျွန်တော် နားလည်ထားတာပါ ၊ မှားရင် လာပြောလို့ရပါတယ်။)
+Payload/Embedding capacity : cover file ရဲ့ data လက်ခံနိုင်စွမ်း နဲ့ သုံးမဲ့ steg method ရဲ့ အကောင်းဆုံး data hide နိုင်တဲ့ limit ကို ပြောတာပါ။"><meta itemprop="datePublished" content="2022-05-09T21:58:48+06:30" />
+<meta itemprop="dateModified" content="2022-05-09T21:58:48+06:30" />
+<meta itemprop="wordCount" content="415">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Image Steg"/>
+<meta name="twitter:description" content="Image Steganography Created: July 13, 2021 2:29 PM
+ကိုယ် ဝှက်ချင်တဲ့ data (message/file) တစ်ခုခုကို တခြား media (mp3, video, images, text) ထဲမှာ ဝှက်တာမျိုးကို steganography လို့ ခေါ်တယ်။
+Steg system တစ်ခုဖြစ်လာဖို့ဆိုရင် -
+Undetectablility : Data hide ထားမှန်း မသိသာရပါဘူး။
+Robustness : data hide ထားတဲ့ cover file က steg analysis ဒဏ် ဘလောက်ခံနိုင်ရည်ရှိလဲ ဆိုတာပါ။
+ဥပမာ - cover image ကို crop, rotate, noise, filter စတာတွေ လုပ်တဲ့အချိန်မှာ hidden data အပေါ် သက်ရောက်မှုကို ပြောတာပါ။
+(ဒါ ကျွန်တော် နားလည်ထားတာပါ ၊ မှားရင် လာပြောလို့ရပါတယ်။)
+Payload/Embedding capacity : cover file ရဲ့ data လက်ခံနိုင်စွမ်း နဲ့ သုံးမဲ့ steg method ရဲ့ အကောင်းဆုံး data hide နိုင်တဲ့ limit ကို ပြောတာပါ။"/>
+
+
+  
+</head>
+
+<body class="bg-gray-800 font-sans text-gray-400 subpixel-antialiased flex flex-col h-screen justify-between tracking-wide">
+  <header class="bg-gray-700 py-3">
+    <div class="container flex justify-between items-center flex-wrap">
+  <div class="text-lg font-bold">
+    <a href="/">
+      
+      ZuS-Sec
+      
+    </a>
+  </div>
+  <div class="flex items-center flex-wrap">
+    
+
+    
+    <ul class="flex items-center flex-wrap">
+      
+      <li class="ml-4">
+        <a class="hover:text-white" href="/about-me/" title="About Me page">About Me</a>
+      </li>
+      
+      <li class="ml-4">
+        <a class="hover:text-white" href="/post/" title="Posts page">Posts</a>
+      </li>
+      
+    </ul>
+    
+  </div>
+</div>
+
+  </header>
+  
+  <main class="container mb-auto mt-20">
+  
+  <article>
+    <header class="text-center py-20">
+      <h1 class="text-5xl pb-2">Image Steg</h1>
+
+      <div class="flex place-content-center">
+        
+
+        <time datetime="2022-05-09T21:58:48+06:30">
+          May 9, 2022
+        </time>
+      </div>
+    </header>
+
+    <section>
+      <h1 id="image-steganography">Image Steganography</h1>
+<p>Created: July 13, 2021 2:29 PM</p>
+<p>ကိုယ် ဝှက်ချင်တဲ့ data (message/file) တစ်ခုခုကို တခြား media (mp3, video, images, text) ထဲမှာ ဝှက်တာမျိုးကို steganography လို့ ခေါ်တယ်။</p>
+<p>Steg system တစ်ခုဖြစ်လာဖို့ဆိုရင် -</p>
+<p><em>Undetectablility</em> : Data hide ထားမှန်း မသိသာရပါဘူး။</p>
+<p><em>Robustness</em> : data hide ထားတဲ့ cover file က steg analysis ဒဏ် ဘလောက်ခံနိုင်ရည်ရှိလဲ ဆိုတာပါ။</p>
+<p>ဥပမာ - cover image ကို crop, rotate, noise, filter စတာတွေ လုပ်တဲ့အချိန်မှာ hidden data အပေါ် သက်ရောက်မှုကို ပြောတာပါ။</p>
+<p>(ဒါ ကျွန်တော် နားလည်ထားတာပါ ၊ မှားရင် လာပြောလို့ရပါတယ်။)</p>
+<p><em>Payload/Embedding capacity</em> : cover file ရဲ့ data လက်ခံနိုင်စွမ်း နဲ့ သုံးမဲ့ steg method ရဲ့ အကောင်းဆုံး data hide နိုင်တဲ့ limit ကို ပြောတာပါ။</p>
+<p><em>Reliability</em> : hidden data ကို ပြန်ထုတ်တဲ့အခါမှာ data loss မဖြစ်ဘဲ ပြန်ထုတ်နိုင်ရမှာပါ။</p>
+<p>ဥပမာ - Hide ခဲ့တဲ့ data က Hello world ဖြစ်နေရင် ပြန် extract လုပ်တဲ့အခါမှာလည်း Hello world ပဲဖြစ်နေရမယ်။</p>
+<p>Steg system တစ်ခုမှာ undetectablility, robustness နဲ့ capacity တို့က အကောင်းဆုံးအဆင့်မှာ တစ်ပြိုင်နက် ရှိမနေနိုင်ပါဘူး။</p>
+<p>ဥပမာ -  payload capacity များရင် undetectablility နည်းသွားမှာပါ။</p>
+<p>Steganography မှာဆိုရင် -</p>
+<ol>
+<li>Text steganography</li>
+<li>Image steganography</li>
+<li>Video steganography</li>
+<li>Audio steganography</li>
+<li>Network steganography ဆိုပြီး ရှိတယ်။</li>
+</ol>
+<p>ဒီထဲကမှ Image Steganography အကြောင်းကို ပြောပြပါ့မယ်။</p>
+<h2 id="image-steganography-1">Image Steganography</h2>
+<p>Image Steganography ဆိုတာက data (string,file) ကို တခြား image file (PNG, JPG, JPEG, BMP) တွေထဲမှာ သာမန်မျက်စိနဲ့ ကြည့်ရုံနဲ့ ဝှက်ထားမှန်းမသိအောင် ဝှက်တာမျိုးပါ။</p>
+<p>Image steg method တွေမှာဆိုရင် -</p>
+<ul>
+<li>Spatial Domain</li>
+<li>Transform Domain ကို အသုံးများကြတယ်။</li>
+</ul>
+<p>(တခြား algorithm/method တွေလည်း ရှိနိုင်ပါတယ် ၊ လက်လှမ်းမီသလောက်ပဲ ထည့်ရေးထားတာပါ။)</p>
+<p>Spatial Domain ထဲမှာ sequential system နဲ့ random/scattered system ဆိုပြီး ဆက်ရှိမယ်။ LSB method ကို အဓိကသုံးကြတယ်။</p>
+<h3 id="lsb-method">LSB method</h3>
+<p>LSB ဆိုတာ Least Significant Bit ကိုပြောတာပါ။</p>
+<p>Image တစ်ခုဟာ Pixel တွေနဲ့ ဖွဲ့စည်းထားတယ်ဆိုတာ သိပြီးသားဖြစ်မှာပါ။</p>
+<p>LSB method ရဲ့ သဘောတရားကတော့ hidden data ကို bit ပြောင်းပြီး pixel တစ်ခုချင်းစီရဲ့ LSB မှာ အစာထိုးလိုက်တာပါ။</p>
+<p>Sequential system မှာဆိုရင် pixel တွေရဲ့ LSB တစ်ခုချင်းကို ကိုယ်ဝှက်ချင်တဲ့ data ရဲ့ bit တစ်ခုချင်းနဲ့ အစဉ်လိုက် replace လုပ်တယ်။</p>
+<p>Scattered/random မှာဆိုရင်တော့ အစဉ်လိုက်မဟုတ်ဘဲ random သွားတယ်ပေါ့။</p>
+<p>(တစ်ခါတစ်လေမှာ MSB - Most Significant Bit အနေနဲ့လည်း ရှိလာနိုင်ပါတယ် ၊ သဘောတရားက အတူတူပါပဲ။)</p>
+<h3 id="transform-domain">Transform Domain</h3>
+<p>Transform Domain မှာဆိုရင် JPEG ကို အသုံးများတယ်။</p>
+<p>JPEG file compression process ထဲမှာ secret message ထည့်ပြီး compress လိုက်တယ်လို့ပဲ အကြမ်းဖျင်း မှတ်တယ်။</p>
+<p>JPG file compression အကြောင်း ဒီမှာ ဖတ်ပါ။
+<a href="https://www.freecodecamp.org/news/how-jpg-works-a4dbd2316f35/">https://www.freecodecamp.org/news/how-jpg-works-a4dbd2316f35/</a></p>
+<p>Transform Domain ထဲမှာဆိုရင် -</p>
+<ul>
+<li>IWT (Integer Wavelet Transform)</li>
+<li>Discrete Curvelet Transform (DCVT)</li>
+<li>DCT (Discrete Cosine Transform)</li>
+<li>DWT (Discrete Wavelet Transform)</li>
+<li>DFT (Discrete Fourier Transform) ဆိုပြီး ဆက်ရှိကြသေးတယ်။</li>
+</ul>
+<p>Jsteg, F5 တို့လို model တွေ algorithm တွေမှာဆိုရင် non-zero DCT coefficient ရဲ့ LSB မှာ secret data ကို hide ကြတယ်။</p>
+<p>CTF တွေမှာဆိုရင် steganography ကို category သပ်သပ်ဖြစ်စေ Digital forensics အောက်မှာဖြစ်စေ ထည့်ပြီး မေးကြတယ်။</p>
+<p>‌အောက်က ပုံ၂ပုံကိုကြည့်ပါ။</p>
+<p><img src="Image%20Steganography%200b9c65c361054d0cbc9358ab44baf588/incredible-man-meme-template-people-who-know.jpg" alt="Img1"></p>
+<p>Img1</p>
+<p><img src="Image%20Steganography%200b9c65c361054d0cbc9358ab44baf588/lsb.png" alt="Img2"></p>
+<p>Img2</p>
+<p>ဒုတိယပုံဟာ သာမာန်မျက်စိနဲ့ ကြည့်မယ်ဆိုရင် data hide ထားမှန်း သိမှာမဟုတ်ပါဘူး။</p>
+<p>ပထမပုံနဲ့ အတူတူပဲလို့ ထင်မှာပါ။</p>
+<p>ဒါပေမဲ့ LSB method နဲ့ data hide ထားပါတယ်။</p>
+<p>ဒုတိယပုံကို <a href="https://stylesuxx.github.io/steganography/">https://stylesuxx.github.io/steganography/</a> မှာ decode လိုက်မယ်ဆိုရင် secrete message ကို မြင်ရပါလိမ့်မယ်။</p>
+<p>LSB method ကို plain text သုံးတာထက် encryption တစ်ခုခုနဲ့ တွဲသုံးတာက ပိုသင့်တော်ပါမယ်။</p>
+<p><a href="https://github.com/ThwinHtetWin/HideAndSeek">https://github.com/ThwinHtetWin/HideAndSeek</a></p>
+<p>ဒီ program မှာဆိုရင် secret message ကို symmetric encryption နဲ့ encrypt ပြီးမှ LSB method ကို သုံးထားပါတယ်။</p>
+<p>Steg challenge တွေဖြေဖို့အတွက် note ထုတ်ထားတာ ရှိပါတယ်။မပြည့်စုံတာ ရှိနိုင်ပါတယ်။</p>
+<p><a href="https://zus.notion.site/ImageSteg-notes-b4feb6d174cd427f9b192f02b4090d6d">https://zus.notion.site/ImageSteg-notes-b4feb6d174cd427f9b192f02b4090d6d</a></p>
+<p><em>Note : Educational purpose only ပါ။</em></p>
+
+      <ul class="flex list-none mt-20 ml-0 p-0">
+  
+</ul>
+
+    </section>
+
+    <div class="mt-20">
+
+
+</div>
+  </article>
+</main>
+  <footer class="container mt-20 py-10 border-t border-gray-700">
+    <a class="flex items-center">
+  Made with &lt;3 by ZuS. 
+  <br>Powered by Hugo<a href="https://gohugo.io/">
+</a>
+
+
+  </footer>
+</body>
+
+</html>

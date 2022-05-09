@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+  <meta name="generator" content="Hugo 0.96.0" />
+
+  <title>Steg Note | ZuS-Sec</title>
+  <meta name="description"
+        content="someone in the crowd">
+
+  
+  <meta name="robots" content="noindex, nofollow">
+  
+
+  
+
+  
+  
+  
+  <link href="/output/css/main.9e8d1056a63a3317e922cfe3ba7cd57260153374bec1a569d1dcff77084f28d1.css" integrity="sha256-no0QVqY6MxfpIs/junzVcmAVM3S&#43;waVp0dz/dwhPKNE=" rel="stylesheet" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Raleway:400,200,600' rel='stylesheet' type='text/css'>
+  <meta property="og:title" content="Steg Note" />
+<meta property="og:description" content="ImageSteg notes Created: July 23, 2021 12:44 PM
+Initial Analysis file format verification : file
+view metadata : exiftool, exiv2
+extract some data : strings, cat, bgrep
+More detail about image : stegoveritas
+ LSB Check PNG image : zsteg
+JPG/JPEG image : jsteg
+zsteg sometimes reveal hidden image.
+Syntax : zsteg -E &lt;method&gt; hidden_image.png &gt; reveal_img.png
+Ref : https://szymanski.ninja/en/ctfwriteups/2021/shellctf/hidden-inside-2/
+ File Carving Tools : binwalk, dd, foremost, steghide
+Sometimes a file seems bigger than actual file size because it conceals another file to host file to avoid detect." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/steg-note/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-05-09T21:33:44+06:30" />
+<meta property="article:modified_time" content="2022-05-09T21:33:44+06:30" />
+
+<meta itemprop="name" content="Steg Note">
+<meta itemprop="description" content="ImageSteg notes Created: July 23, 2021 12:44 PM
+Initial Analysis file format verification : file
+view metadata : exiftool, exiv2
+extract some data : strings, cat, bgrep
+More detail about image : stegoveritas
+ LSB Check PNG image : zsteg
+JPG/JPEG image : jsteg
+zsteg sometimes reveal hidden image.
+Syntax : zsteg -E &lt;method&gt; hidden_image.png &gt; reveal_img.png
+Ref : https://szymanski.ninja/en/ctfwriteups/2021/shellctf/hidden-inside-2/
+ File Carving Tools : binwalk, dd, foremost, steghide
+Sometimes a file seems bigger than actual file size because it conceals another file to host file to avoid detect."><meta itemprop="datePublished" content="2022-05-09T21:33:44+06:30" />
+<meta itemprop="dateModified" content="2022-05-09T21:33:44+06:30" />
+<meta itemprop="wordCount" content="431">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Steg Note"/>
+<meta name="twitter:description" content="ImageSteg notes Created: July 23, 2021 12:44 PM
+Initial Analysis file format verification : file
+view metadata : exiftool, exiv2
+extract some data : strings, cat, bgrep
+More detail about image : stegoveritas
+ LSB Check PNG image : zsteg
+JPG/JPEG image : jsteg
+zsteg sometimes reveal hidden image.
+Syntax : zsteg -E &lt;method&gt; hidden_image.png &gt; reveal_img.png
+Ref : https://szymanski.ninja/en/ctfwriteups/2021/shellctf/hidden-inside-2/
+ File Carving Tools : binwalk, dd, foremost, steghide
+Sometimes a file seems bigger than actual file size because it conceals another file to host file to avoid detect."/>
+
+
+  
+</head>
+
+<body class="bg-gray-800 font-sans text-gray-400 subpixel-antialiased flex flex-col h-screen justify-between tracking-wide">
+  <header class="bg-gray-700 py-3">
+    <div class="container flex justify-between items-center flex-wrap">
+  <div class="text-lg font-bold">
+    <a href="/">
+      
+      ZuS-Sec
+      
+    </a>
+  </div>
+  <div class="flex items-center flex-wrap">
+    
+
+    
+    <ul class="flex items-center flex-wrap">
+      
+      <li class="ml-4">
+        <a class="hover:text-white" href="/about-me/" title="About Me page">About Me</a>
+      </li>
+      
+      <li class="ml-4">
+        <a class="hover:text-white" href="/post/" title="Posts page">Posts</a>
+      </li>
+      
+    </ul>
+    
+  </div>
+</div>
+
+  </header>
+  
+  <main class="container mb-auto mt-20">
+  
+  <article>
+    <header class="text-center py-20">
+      <h1 class="text-5xl pb-2">Steg Note</h1>
+
+      <div class="flex place-content-center">
+        
+
+        <time datetime="2022-05-09T21:33:44+06:30">
+          May 9, 2022
+        </time>
+      </div>
+    </header>
+
+    <section>
+      <h1 id="imagesteg-notes">ImageSteg notes</h1>
+<p>Created: July 23, 2021 12:44 PM</p>
+<h2 id="initial-analysis">Initial Analysis</h2>
+<p>file format verification : <code>file</code></p>
+<p>view metadata : <code>exiftool</code>, <code>exiv2</code></p>
+<p>extract some data : <code>strings</code>, <code>cat</code>, <code>bgrep</code></p>
+<p>More detail about image : <code>stegoveritas</code></p>
+<hr>
+<h2 id="lsb-check">LSB Check</h2>
+<p>PNG image : <code>zsteg</code></p>
+<p>JPG/JPEG image : <code>jsteg</code></p>
+<p><code>zsteg</code> sometimes reveal hidden image.</p>
+<p>Syntax : <code>zsteg -E &lt;method&gt; hidden_image.png &gt; reveal_img.png</code></p>
+<p>Ref : <a href="https://en.wikipedia.org/wiki/List_of_file_signatures">https://szymanski.ninja/en/ctfwriteups/2021/shellctf/hidden-inside-2/</a></p>
+<hr>
+<h2 id="file-carving">File Carving</h2>
+<p>Tools : <code>binwalk</code>, <code>dd</code>, <code>foremost</code>, <code>steghide</code></p>
+<p>Sometimes a file seems bigger than actual file size because it conceals another file to host file to avoid detect.</p>
+<p><code>binwalk</code> can show in decimal and hexadecimal value of location to extract.</p>
+<p>Use <code>-e</code> flag to extract automatically.</p>
+<p>Syntax : <code>binwalk -e file.png</code></p>
+<p><code>dd</code> is used to extract file from host file.</p>
+<p>Example,</p>
+<p><code>dd if=example.jpg bs=1 skip=1972141 of=foo.zip</code></p>
+<p>skip must be in decimal values(can get from binwalk.)</p>
+<p>If one of image files is suspicious, then use steghide&rsquo;s extract feature.</p>
+<p>Syntax : <code>steghide extract -sf sus.png</code></p>
+<hr>
+<h2 id="file-header-analysismagic-bytes">File Header Analysis(Magic Bytes)</h2>
+<p>Tools : any hex editor( <code>ghex</code>, <code>xxd</code> , 010editor, <code>hexedit</code> )</p>
+<p>check magic bytes(file signature) if we can&rsquo;t open on default viewer.</p>
+<p>Ref : <a href="https://en.wikipedia.org/wiki/List_of_file_signatures">https://en.wikipedia.org/wiki/List_of_file_signatures</a></p>
+<hr>
+<h2 id="png-corrupted-file">PNG Corrupted File</h2>
+<p>Tools : <code>pngcheck</code>, any hex editor, <code>PCRT</code></p>
+<p>By using <code>pngcheck</code>, we can follow the corrupted bytes and edit the wrong ones to make it valid.</p>
+<p>Critical chunks :</p>
+<ul>
+<li>PNG - A PNG image always starts with those 4 bytes.</li>
+<li>IHDR - Image Header which is a very first chunk.</li>
+<li>IDAT - Image Data Chunk.</li>
+<li>IEND - trailer.Mark as the end of PNG datastream.</li>
+</ul>
+<h3 id="crc-error-in-ihdr-chunk">CRC error in IHDR chunk</h3>
+<p>IHDR chunk error can fix with <code>pngcheck</code> tool.</p>
+<p>(computed - REAL BYTES, expected - ERROR BYTES)</p>
+<p>Read dimensionless challenge again.</p>
+<hr>
+<h2 id="bruteforce">Bruteforce</h2>
+<p>Tools : <code>zip2john</code></p>
+<p><code>zip2john</code> can be used to crack the password of zip file which are embedded in the image.(sometimes combo with <code>binwalk</code>)</p>
+<p>Usage :</p>
+<ol>
+<li><code>zip2john challenge.zip &gt; hash.txt</code></li>
+<li><code>john -- wordlist=/usr/share/wordlists/rockyou.txt --format=zip hash.txt</code> or <code>john hash.txt</code></li>
+</ol>
+<hr>
+<h2 id="texts-hidden-in-images">Texts Hidden in Images</h2>
+<p>Tool : <code>stegsolve</code>, GIMP or Photoshop software</p>
+<p>if the challenge gives two pics, check stegsolve&rsquo;s image combiner.</p>
+<hr>
+<h2 id="audio-steganography">Audio Steganography</h2>
+<p>Tools : audacity, sonic-visualizer, <code>stegpy</code></p>
+<p>check waveform and spectrogram to find some information or flag.</p>
+<hr>
+<h2 id="steganographic-nature-of-white-space">Steganographic nature of white-space</h2>
+<p>Tools : <code>stegsnow</code></p>
+<p>If challenge text file seems bigger than written text and noticed big spaces, then try <code>stegsnow</code>.</p>
+<hr>
+<p>Combine 2 Images with numpy and PIL</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">numpy</span> <span style="color:#6ab825;font-weight:bold">as</span> <span style="color:#447fcf;text-decoration:underline">np</span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">PIL</span> <span style="color:#6ab825;font-weight:bold">import</span> Image
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># Open images</span>
+</span></span><span style="display:flex;"><span>im1 = Image.open(<span style="color:#ed9d13">&#34;scrambled1.png&#34;</span>)
+</span></span><span style="display:flex;"><span>im2 = Image.open(<span style="color:#ed9d13">&#34;scrambled2.png&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># Make into Numpy arrays</span>
+</span></span><span style="display:flex;"><span>im1np = np.array(im1)
+</span></span><span style="display:flex;"><span>im2np = np.array(im2)
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># Add images</span>
+</span></span><span style="display:flex;"><span>result = im2np + im1np
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># Convert back to PIL image and save</span>
+</span></span><span style="display:flex;"><span>Image.fromarray(result).save(<span style="color:#ed9d13">&#39;result.png&#39;</span>)
+</span></span></code></pre></div><p>Ref : <a href="https://github.com/HHousen/PicoCTF-2021/tree/master/Cryptography/Pixelated">https://github.com/HHousen/PicoCTF-2021/tree/master/Cryptography/Pixelated</a></p>
+<p>Online BMP file viewer</p>
+<p><a href="https://www.photopea.com/">https://www.photopea.com/</a></p>
+
+      <ul class="flex list-none mt-20 ml-0 p-0">
+  
+</ul>
+
+    </section>
+
+    <div class="mt-20">
+
+
+</div>
+  </article>
+</main>
+  <footer class="container mt-20 py-10 border-t border-gray-700">
+    <a class="flex items-center">
+  Made with &lt;3 by ZuS. 
+  <br>Powered by Hugo<a href="https://gohugo.io/">
+</a>
+
+
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on ZuS-Sec</title>
+    <link>/categories/</link>
+    <description>Recent content in Categories on ZuS-Sec</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 08 May 2022 21:18:20 +0630</lastBuildDate><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Binary Exploitation</title>
+      <link>/categories/binary-exploitation/</link>
+      <pubDate>Sun, 08 May 2022 21:18:20 +0630</pubDate>
+      
+      <guid>/categories/binary-exploitation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C</title>
+      <link>/categories/c/</link>
+      <pubDate>Sun, 08 May 2022 21:18:20 +0630</pubDate>
+      
+      <guid>/categories/c/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+  <meta name="generator" content="Hugo 0.96.0" />
+
+  <title>Mongodb Basics | ZuS-Sec</title>
+  <meta name="description"
+        content="someone in the crowd">
+
+  
+  <meta name="robots" content="noindex, nofollow">
+  
+
+  
+
+  
+  
+  
+  <link href="/output/css/main.9e8d1056a63a3317e922cfe3ba7cd57260153374bec1a569d1dcff77084f28d1.css" integrity="sha256-no0QVqY6MxfpIs/junzVcmAVM3S&#43;waVp0dz/dwhPKNE=" rel="stylesheet" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Raleway:400,200,600' rel='stylesheet' type='text/css'>
+  <meta property="og:title" content="Mongodb Basics" />
+<meta property="og:description" content="MongoDB Basics Created: July 21, 2021 4:41 PM
+What is Database  A database is a structured way to store and access data.  What is NoSQL Database  A database that stores data in an organizing way without using table.  What is MongoDB Database  MongoDB is a NoSQL document database. Data are stored as documents. Documents are turn stored in what we called collections. Collection is an organized store of documents in MongoDB usually with common fields between documents." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/mongodb-basics/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-05-09T20:41:49+06:30" />
+<meta property="article:modified_time" content="2022-05-09T20:41:49+06:30" />
+
+<meta itemprop="name" content="Mongodb Basics">
+<meta itemprop="description" content="MongoDB Basics Created: July 21, 2021 4:41 PM
+What is Database  A database is a structured way to store and access data.  What is NoSQL Database  A database that stores data in an organizing way without using table.  What is MongoDB Database  MongoDB is a NoSQL document database. Data are stored as documents. Documents are turn stored in what we called collections. Collection is an organized store of documents in MongoDB usually with common fields between documents."><meta itemprop="datePublished" content="2022-05-09T20:41:49+06:30" />
+<meta itemprop="dateModified" content="2022-05-09T20:41:49+06:30" />
+<meta itemprop="wordCount" content="3236">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mongodb Basics"/>
+<meta name="twitter:description" content="MongoDB Basics Created: July 21, 2021 4:41 PM
+What is Database  A database is a structured way to store and access data.  What is NoSQL Database  A database that stores data in an organizing way without using table.  What is MongoDB Database  MongoDB is a NoSQL document database. Data are stored as documents. Documents are turn stored in what we called collections. Collection is an organized store of documents in MongoDB usually with common fields between documents."/>
+
+
+  
+</head>
+
+<body class="bg-gray-800 font-sans text-gray-400 subpixel-antialiased flex flex-col h-screen justify-between tracking-wide">
+  <header class="bg-gray-700 py-3">
+    <div class="container flex justify-between items-center flex-wrap">
+  <div class="text-lg font-bold">
+    <a href="/">
+      
+      ZuS-Sec
+      
+    </a>
+  </div>
+  <div class="flex items-center flex-wrap">
+    
+
+    
+    <ul class="flex items-center flex-wrap">
+      
+      <li class="ml-4">
+        <a class="hover:text-white" href="/about-me/" title="About Me page">About Me</a>
+      </li>
+      
+      <li class="ml-4">
+        <a class="hover:text-white" href="/post/" title="Posts page">Posts</a>
+      </li>
+      
+    </ul>
+    
+  </div>
+</div>
+
+  </header>
+  
+  <main class="container mb-auto mt-20">
+  
+  <article>
+    <header class="text-center py-20">
+      <h1 class="text-5xl pb-2">Mongodb Basics</h1>
+
+      <div class="flex place-content-center">
+        
+
+        <time datetime="2022-05-09T20:41:49+06:30">
+          May 9, 2022
+        </time>
+      </div>
+    </header>
+
+    <section>
+      <h1 id="mongodb-basics">MongoDB Basics</h1>
+<p>Created: July 21, 2021 4:41 PM</p>
+<h2 id="what-is-database">What is Database</h2>
+<ul>
+<li>A database is a structured way to store and access data.</li>
+</ul>
+<h2 id="what-is-nosql-database">What is NoSQL Database</h2>
+<ul>
+<li>A database that stores data in an organizing way without using table.</li>
+</ul>
+<h2 id="what-is-mongodb-database">What is MongoDB Database</h2>
+<ul>
+<li>MongoDB is a NoSQL document database.</li>
+<li>Data are stored as documents.</li>
+<li>Documents are turn stored in what we called collections.</li>
+<li>Collection is an organized store of documents in MongoDB usually with common fields between documents.</li>
+<li>MongoDB database would contain multiple collections where they would contains multiple documents.</li>
+</ul>
+<h2 id="what-is-document-in-mongodb">What is document in MongoDB</h2>
+<ul>
+<li>A way to organize and store data as a set of field-value pairs.</li>
+<li>Field is an unique identifier for a datapoint.</li>
+<li>Value is a data related to a given field ( identifier ).</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">{</span><span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">  </span>&lt;field&gt;<span style="color:#666"> </span>:<span style="color:#666"> </span>&lt;value&gt;,<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">  </span><span style="color:#ed9d13">&#34;name&#34;</span><span style="color:#666">  </span>:<span style="color:#666"> </span><span style="color:#ed9d13">&#34;Alice&#34;</span>,<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">  </span><span style="color:#ed9d13">&#34;age&#34;</span><span style="color:#666">   </span>:<span style="color:#666"> </span><span style="color:#3677a9">19</span><span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666"></span><span style="color:#a61717;background-color:#e3d2d2">}</span><span style="color:#666">
+</span></span></span></code></pre></div><h2 id="replica-set">Replica Set</h2>
+<p>a few connected machines that store the same data to ensure that if something happens to one of the machines the data will remain intact. Comes from the word replicate - to copy something.</p>
+<h2 id="instance">Instance</h2>
+<p>a single machine locally or in the cloud, running a certain software, in our case it is the MongoDB database.</p>
+<h2 id="cluster">Cluster</h2>
+<p>group of servers that store your data.</p>
+<hr>
+<h2 id="atlas-ui">Atlas UI</h2>
+<h3 id="two-ways-to-interact-with-clusters">Two ways to interact with clusters</h3>
+<ul>
+<li>Data explorer which can be navigated via collections button on cluster page.</li>
+<li>via shell, by clicking connect button on cluster page.</li>
+</ul>
+<hr>
+<h2 id="how-does-mongodb-store-data">How does MongoDB store data</h2>
+<ul>
+<li>JSON store data in key-value pair.</li>
+<li>Keys are also known as fields in MongoDB</li>
+<li>JSON are turn into BSON(Binary JSON).</li>
+<li>MongoDB stores data in BSON format both internally, and over the network.</li>
+<li>Data can also be retrieved from MongoDB as JSON.</li>
+<li>MongoDB stores data in BSON, view in JSON.</li>
+</ul>
+<hr>
+<h2 id="what-is-bson">What is BSON</h2>
+<ul>
+<li>BSON bridges the gap between binary representation and JSON.</li>
+<li>BSON is lighter, faster than JSON.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{<span style="color:#ed9d13">&#34;hello&#34;</span>: <span style="color:#ed9d13">&#34;world&#34;</span>} →
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ed9d13">\x</span>16<span style="color:#ed9d13">\x</span>00<span style="color:#ed9d13">\x</span>00<span style="color:#ed9d13">\x</span><span style="color:#3677a9">00</span>           //total document size
+</span></span><span style="display:flex;"><span><span style="color:#ed9d13">\x</span><span style="color:#3677a9">02</span>                       // <span style="color:#40ffff">0x02</span> = <span style="color:#24909d">type</span> String
+</span></span><span style="display:flex;"><span>hello<span style="color:#ed9d13">\x</span><span style="color:#3677a9">00</span>                  // field name 
+</span></span><span style="display:flex;"><span><span style="color:#ed9d13">\x</span>06<span style="color:#ed9d13">\x</span>00<span style="color:#ed9d13">\x</span>00<span style="color:#ed9d13">\x</span>00world<span style="color:#ed9d13">\x</span><span style="color:#3677a9">00</span>  // field value
+</span></span><span style="display:flex;"><span><span style="color:#ed9d13">\x</span><span style="color:#3677a9">00</span>                       // <span style="color:#40ffff">0x00</span> = <span style="color:#24909d">type</span> EOO (<span style="color:#ed9d13">&#39;end of object&#39;</span>)  
+</span></span></code></pre></div><h2 id="pros-and-cons-of-json">Pros and Cons of JSON</h2>
+<h3 id="pros-of-json">Pros of JSON</h3>
+<ul>
+<li>User friendly</li>
+<li>Readable</li>
+<li>Familiar for programmers</li>
+</ul>
+<h3 id="cons-of-json">Cons of JSON</h3>
+<ul>
+<li>Text-based format</li>
+<li>Text parsing is very slow</li>
+<li>Limited number of basic data types</li>
+<li>Space consuming, another database concern</li>
+</ul>
+<hr>
+<h2 id="json-vs-bson">JSON vs BSON</h2>
+<h3 id="encoding">Encoding</h3>
+<ul>
+<li>JSON use UTF-8.</li>
+<li>BSON use binary.</li>
+</ul>
+<h3 id="data-type-support">Data type support</h3>
+<ul>
+<li>JSON : String, Boolean, Number, Array</li>
+<li>String, Boolean, Number (Integer, Float, Long, Decimal128&hellip;), Array, Date, Raw Binary</li>
+</ul>
+<h3 id="readability">Readability</h3>
+<ul>
+<li>JSON : Human and machine</li>
+<li>BSON : Machine only</li>
+</ul>
+<hr>
+<h2 id="importing-and-exporting-data">Importing and Exporting Data</h2>
+<p>We can import/export data in BSON and JSON format.</p>
+<p>To view and read data, should choose JSON format.</p>
+<p>To transfer data, should choose BSON format.</p>
+<h3 id="importexport-in-json-format">Import/Export in JSON Format</h3>
+<p>To import data in JSON format, use <code>mongoimport</code> command.</p>
+<p>Example ,</p>
+<p><code>mongoimport --uri=&quot;mongodb+srv://&lt;your username&gt;:&lt;your password&gt;@&lt;your cluster&gt;.mongodb.net/sample_supplies&quot; --drop sales.json</code></p>
+<p>To export data in JSON format, use</p>
+<p><code>mongoexport</code> command.</p>
+<p>Example,</p>
+<p><code>mongoexport --uri=&quot;mongodb+srv://&lt;your username&gt;:&lt;your password&gt;@&lt;your cluster&gt;.mongodb.net/sample_supplies&quot; --collection=sales --out=sales.json</code></p>
+<h2 id="importexport-in-bson-format">Import/Export in BSON Format</h2>
+<p>To import data in BSON format, use <code>mongorestore</code> command.</p>
+<p>Example,</p>
+<p><code>mongorestore --uri &quot;mongodb+srv://&lt;your username&gt;:&lt;your password&gt;@&lt;your cluster&gt;.mongodb.net/sample_supplies&quot;  --drop dump</code></p>
+<p>To export data in BSON format, use <code>mongodump</code> command.</p>
+<p>Example,</p>
+<p><code>mongodump --uri &quot;mongodb+srv://&lt;your username&gt;:&lt;your password&gt;@&lt;your cluster&gt;.mongodb.net/sample_supplies&quot;</code></p>
+<p><em>srv</em> in URI means it established secure connection.</p>
+<hr>
+<h2 id="querying-collections-and-database">Querying Collections and Database</h2>
+<h3 id="via-data-explorer">Via data explorer</h3>
+<p><em>Namespace</em> - The concatenation of the database name and collection name is
+called a namespace.</p>
+<p>Example : <code>sample_training.grades</code>, where <em>sample_training</em> is database name while <em>grades</em> is collection name.</p>
+<p>We looked at the sample_training.zips collection and issued the following
+queries:</p>
+<ul>
+<li>{&ldquo;state&rdquo;: &ldquo;NY&rdquo;}</li>
+<li>{&ldquo;state&rdquo;: &ldquo;NY&rdquo;, &ldquo;city&rdquo;: &ldquo;ALBANY&rdquo;}</li>
+</ul>
+<p>Remember queries are case-sensitive.</p>
+<h2 id="via-mongodb-shell">Via MongoDB shell</h2>
+<p>Syntax of connection string :</p>
+<p><code>mongo &quot;mongodb+srv://&lt;username&gt;:&lt;password&gt;@&lt;cluster&gt;.mongodb.net/admin&quot;</code></p>
+<p><code>admin</code> is default database that does a number of administrative things.</p>
+<p>Once we are connected, first make sure all the databases are there and we are connected to the right cluster.</p>
+<p><code>show dbs</code> command shows the list of databases in the cluster.</p>
+<p>To use one of the databases ,use <code>use</code> command.</p>
+<p>Syntax    : <code>use &lt;database name&gt;</code></p>
+<p>Example : <code>use sample_training</code></p>
+<p>To view the collections of an active database, use <code>show collections</code> command.</p>
+<p>To find with a given criteria.</p>
+<p><code>findOne</code>  :  If there are multiple documents that match a given criteria, only one of of them will be showed.</p>
+<p><code>find</code> : This will give all results those match a given criteria.</p>
+<p>Syntax    : <code>db.collection_name.find(query)</code>
+Example : <code>db.zips.find({&quot;state&quot;: &quot;NY&quot;})</code></p>
+<p>We don&rsquo;t have to specify database name, since we navigated to the needed database earlier.</p>
+<p><code>db</code> object is pointing to sample_training which is a database.</p>
+<p>Query results are show in random, not in some sorting.</p>
+<p>To view more result of query, use <code>it</code>command which iterates through the cursor.</p>
+<p>To get the total number of query results, use <code>count</code> operation at the end of find command.</p>
+<p>Syntax    : <code>db.collection_name.find(query).count()</code></p>
+<p>Example : <code>db.zips.find({&quot;state&quot;: &quot;NY&quot;}).count()</code></p>
+<p>To read the results easier, use <code>pretty</code> operation at the end of find command.</p>
+<p>Syntax    : <code>db.collection_name.find(query).pretty()</code></p>
+<p>Example : <code>db.zips.find({&quot;state&quot;: &quot;NY&quot;, &quot;city&quot;: &quot;ALBANY&quot;}).pretty()</code></p>
+<hr>
+<h2 id="inserting-new-documents---objectid">Inserting new documents - ObjectId</h2>
+<h3 id="via-data-explorer-1">Via data explorer</h3>
+<ul>
+<li><code>_id</code> is a unique identifier for a document in a collection.</li>
+<li><code>_id</code> is required in every MongoDB  document.</li>
+<li><code>ObjectId</code> is the default value for the <code>_id</code> field unless otherwise specified.</li>
+</ul>
+<h3 id="via-mongo-shell">Via Mongo Shell</h3>
+<p>Navigate to the needed database.</p>
+<p>Syntax    : <code>db.&lt;collection_name&gt;insert([ &lt;query&gt; ])</code></p>
+<p>Example : <code>db.inspections.insert([ { &quot;test&quot;: 1 }, { &quot;test&quot;: 2 }, { &quot;test&quot;: 3 } ])</code></p>
+<p>Above example will not give you a duplicate error since <code>_id</code> are automatically generated before insertion.</p>
+<p>Also we can give an unique id <code>_id</code> to a document ourselves.</p>
+<p>When the default ordered insert happened, the moment there is a duplicate key error, the insert operation halts.</p>
+<p>Even if the rest of the documents have unique IDs, they won&rsquo;t get a chance to be inserted.</p>
+<p>add <code>{ &quot;ordered&quot;: false }</code> option at the end of the insert command to get inserted even the other data encountered duplicate key error.</p>
+<p>Example : <code>db.inspections.insert([ { &quot;_id&quot;: 1, &quot;test&quot;: 1 }, { &quot;_id&quot;: 1, &quot;test&quot;: 2 }, { &quot;_id&quot;: 3, &quot;test&quot;: 3 } ] , { &quot;ordered&quot;: false })</code></p>
+<p>Above example will insert <code>&quot;_id&quot;: 3, &quot;test&quot;: 3</code> to the collection although duplicate key error encountered on the first two items.</p>
+<p>Always take care of collection name in <code>db.&lt;collection_name&gt;insert([ &lt;query&gt; ])</code></p>
+<hr>
+<h2 id="updating-documents">Updating Documents</h2>
+<h3 id="via-data-explorer-2">via data explorer</h3>
+<p>In collections, navigate to the needed document and click <code>Edit</code> button on the right side of the frame.</p>
+<h3 id="via-mongo-shell-1">Via Mongo Shell</h3>
+<p><code>updateOne</code> : If there are multiple documents that match a given criteria, only one of of them will be updated.</p>
+<p><code>updateMany</code> : This will update all documents that match a given criteria.</p>
+<p>Syntax : <code>db.collection_name.update(query, update, options)</code></p>
+<p>Example :</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>db.iot.updateOne({ &#34;sensor&#34;: r.sensor, &#34;date&#34;: r.date,
+</span></span><span style="display:flex;"><span>                   &#34;valcount&#34;: { &#34;$lt&#34;: 48 } },
+</span></span><span style="display:flex;"><span>                         { &#34;$push&#34;: { &#34;readings&#34;: { &#34;v&#34;: r.value, &#34;t&#34;: r.time } },
+</span></span><span style="display:flex;"><span>                           &#34;$inc&#34;: { &#34;valcount&#34;: 1, &#34;total&#34;: r.value } },
+</span></span><span style="display:flex;"><span>                 { &#34;upsert&#34;: true })
+</span></span></code></pre></div><p>Here the yellow part is query, green part is update and the white one is the option.</p>
+<h3 id="some-update-operators">Some update Operators</h3>
+<p><code>$inc</code>     : increases field values by a specified amount.</p>
+<p>Syntax    : <code>{ &quot;$inc&quot; : { &quot;field1&quot; : &quot;value1&quot; , &quot;field2&quot; : &quot;value2&quot; } }</code></p>
+<p>Example : <code>db.&lt;collection_name&gt;.updateMany( { &quot;city&quot; : &quot;Mandalay&quot; } , { &quot;$inc&quot; : { &quot;population&quot; : &quot;10&quot; } } )</code></p>
+<p><code>$set</code>     :  set field values to a new specified value.</p>
+<p>Syntax    : <code>{ &quot;$set&quot; : { &quot;field1&quot; : &quot;value1&quot; , &quot;field2&quot; : &quot;value2&quot; } }</code></p>
+<p>Example : <code>db.&lt;collection_name&gt;.updateMany( { &quot;city&quot; : &quot;Mandalay&quot; } , { &quot;$set&quot; : { &quot;population&quot; : &quot;133337&quot; } } )</code></p>
+<p><em>Remember if the field that you specified does not exist in the document , then it will create a new field-value in the document.</em></p>
+<p><code>$push</code>   : adds an element to an array field.</p>
+<p><code>$push</code>   :  turns a field into an array field if it was previously a different type.</p>
+<p>If the field is absent in the document to update, <code>$push</code> adds the array field with the value as its element.</p>
+<p>Syntax    : <code>{ &quot;$push&quot; : { &quot;array-field-name&quot; : { &quot;new-sub-field1&quot; : &quot;new-sub-value1&quot; } } }</code></p>
+<p>Example : <code>db.&lt;collection_name&gt;.updateMany( { &quot;student_id&quot; : 123 ,&quot;class_id&quot; : 2 } ,  { &quot;$push&quot; : { &quot;scores&quot; :  { &quot; type &quot; : &quot;extra score&quot; , &quot;value&quot; : 100 } } }  )</code></p>
+<p><code>upsert option</code></p>
+<p>upsert is a combination of update and insert (update + insert = upsert).</p>
+<p>If the value of this option is set to true and the document or documents found that match the specified query, then the update operation will update the matched document or documents.</p>
+<p>Or if the value of this option is set to true and no document or documents matches the specified document, then this option inserts a new document in the collection and this new document have the fields that indicate in the operation.</p>
+<p>Syntax : <code>upsert: &lt;boolean&gt;</code></p>
+<p>Example : <code>db.employee.update({name:&quot;Priya&quot;}, {$set: {department: &quot;HR&quot;}}, {upsert:true})</code></p>
+<p>When upsert is set to <code>true</code> it can perform an insert if the query predicate doesn&rsquo;t return a matching document.</p>
+<p>When upsert is set to <code>false</code> an update will happen only when the query predicate is matched with a document from the collection.</p>
+<hr>
+<h2 id="deleting-documents-and-collections">Deleting documents and collections</h2>
+<h3 id="via-data-explorer-3">Via data explorer</h3>
+<p>On hover, a trash-icon appears.Click that icon to delete the database or collection or document.</p>
+<h3 id="via-mongo-shell-2">Via Mongo Shell</h3>
+<p><code>deleteOne</code>   :  If there are multiple documents that match a given criteria, only one of of them will be deleted.</p>
+<p><code>deleteMany</code> : This will delete all documents that match a given criteria.</p>
+<p>To delete a collection, use <code>drop</code> operation.</p>
+<p>Syntax : <code>db.&lt;collection_name&gt;.drop()</code></p>
+<blockquote>
+<p><em>Note  : Removing all collections in a database also remove the database.</em></p>
+</blockquote>
+<hr>
+<h2 id="query-operators">Query Operators</h2>
+<p>Provide additional ways to locate within the database.</p>
+<h3 id="comparison-operators">Comparison Operators</h3>
+<p><code>$eq</code>  : Equal To</p>
+<p><code>$nq</code>  : Not Equal To</p>
+<p><code>$gt</code>  : Greater Than</p>
+<p><code>$lt</code>  : Less Than</p>
+<p><code>$gte</code> : Greater Than or Equal To</p>
+<p><code>$lte</code> : Less Than or Equal To</p>
+<p>Syntax    : <code>{ &lt;field&gt; : { &lt;operator&gt; : &lt;value&gt; } }</code></p>
+<p>Example : <code>db.trips.find( { &quot;tripduration&quot; : { &quot;$lte&quot; : 70 } , &quot;usertype&quot; : { &quot;$ne&quot; : &quot;subscriber&quot; } } ).pretty()</code></p>
+<p>Meaning : Find all documents where the <em>tripduration</em> was <em>less than or equal to</em> 70 seconds and the <em>usertype</em> was <em>not</em> Subscriber.</p>
+<hr>
+<h3 id="logic-operators">Logic Operators</h3>
+<p>Logic operators will allow us to be more granular in our search of data.</p>
+<p><code>$and</code> : Match all of the specified query clauses</p>
+<p>Syntax    : <code>{ &lt;operator&gt; : [ {statement1} , {statement2} , ... ] }</code></p>
+<p>Example : <code>{&quot;$and&quot; : [{&quot;tripduration&quot; : {&quot;$gt&quot;:350 ,&quot;$lt&quot;:380 }}]}</code></p>
+<p>Above example can also be written as : <code>{&quot;tripduration&quot; : {&quot;$gt&quot;:350,&quot;$lt&quot;:380}}</code></p>
+<p><em>Note : <code>$and</code> is used as default operator when an operator is not specified.</em></p>
+<p><code>*{ &quot;sector&quot; : &quot;Mobile Food Vendor - 991 &quot;,  &quot;result &quot; : &quot;Warning&quot;  }*</code></p>
+<p>Explicitly use <code>$and</code> when you need to include the same operator more than once in a query.</p>
+<p>Example :</p>
+<pre tabindex="0"><code>db.routes.find({ &#34;$and&#34;: [ { &#34;$or&#34; :[ { &#34;dst_airport&#34;: &#34;KZN&#34; },
+                                    { &#34;src_airport&#34;: &#34;KZN&#34; }
+                                  ] },
+                          { &#34;$or&#34; :[ { &#34;airplane&#34;: &#34;CR2&#34; },
+                                     { &#34;airplane&#34;: &#34;A81&#34; } ] }
+                         ]}).pretty()
+</code></pre><p><code>$or</code>   : At least one of the query clauses is matched</p>
+<p>Syntax    : <code>{ &lt;operator&gt; : [ {statement1} , {statement2} , ... ] }</code></p>
+<p>Example : <code>{ &quot;$or&quot; : [ { &quot;dst_airport&quot; : &quot;KZN&quot; } , { &quot;src_airport&quot; : &quot;KZN&quot; } ] }</code></p>
+<p><code>$nor</code> : Fail to match both given clauses</p>
+<p>Syntax    : <code>{ &lt;operator&gt; : [ {statement1} , {statement2} , ... ] }</code></p>
+<p>Example : <code>{ $nor : [ { &quot;result&quot; : &quot;No Violation Issued&quot; } , { &quot;result&quot; : &quot;Violation Issued&quot; } ] }</code></p>
+<p><code>$not</code> : Negates the query requirement</p>
+<p>Syntax    : <code>{ field: { $not: { &lt;operator-expression&gt; } } }</code></p>
+<p>Example : <code>{ price: { $not: { $gt: 1.99 } } }</code></p>
+<p>Note : Since <code>$not</code> is a logical operator, this can be used for only value.</p>
+<h3 id="ne-vs-not-operators"><code>$ne</code> VS <code>$not</code> Operators</h3>
+<p><code>$ne</code> is a comparison operator.</p>
+<p><code>$not</code> is a logical operator.</p>
+<p><code>$ne</code> selects the documents where the value of the field is not equal to the specified value. This includes documents that do not contain the field.</p>
+<p><code>$not</code> performs a logical NOT operation on the specified <code>&lt;operator-expression&gt;</code> and selects the documents that do not match the <code>&lt;operator-expression&gt;</code>. This includes documents that do not contain the field.</p>
+<p><code>{ &quot;price&quot;: { &quot;$not&quot;: { &quot;$gt&quot;: 1.99 } } }</code> : price not greater than 1.99</p>
+<p><code>{ &quot;qty&quot; : { &quot;$ne&quot;: 20 } }</code> : number of qty is not equal to 20</p>
+<p><code>{ &quot;qty&quot; : {&quot;$not&quot; : {&quot;$ne&quot; : 20} } }</code> : reject all qty that is not equal to 20, this means it accepts only 20.</p>
+<hr>
+<h2 id="expressive-query-operator">Expressive Query Operator</h2>
+<p><code>$expr</code> allows the use of aggregation expressions within the query language.</p>
+<p><code>$expr</code> allows us to use variables and conditional statements.</p>
+<p>Syntax    : <code>{ $expr : { &lt;expression&gt; } }</code></p>
+<p>Example : <code>{&quot;$expr&quot; : { &quot;$eq&quot; : [&quot;$start station id&quot;,&quot;$end station id&quot;] }}</code></p>
+<p><code>$</code> denotes the use of an operator.</p>
+<p><code>$</code> addresses the field-value.</p>
+<p>If we don&rsquo;t use <code>$</code> in this example, we have to look for a specific field value in all documents rather than compare a value that varies from document to document to another value that varies from document to document.</p>
+<p>While using expressive query operator, we must use <code>$</code> to describe a field.</p>
+<p>default MQL syntax : <code>{ &lt;field&gt; : {&lt;operator&gt; : &lt;value&gt;} }</code></p>
+<p>Aggregation syntax : <code>{ &lt;operator&gt; : {&lt;field&gt; , &lt;value&gt;} }</code></p>
+<p><em>A closer look</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">{</span><span style="color:#666"> </span><span style="color:#ed9d13">&#34;$expr&#34;</span><span style="color:#666"> </span>:<span style="color:#666"> </span><span style="color:#a61717;background-color:#e3d2d2">{</span><span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">             </span><span style="color:#ed9d13">&#34;$and&#34;</span><span style="color:#666"> </span>:<span style="color:#666"> </span>[<span style="color:#666"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">                       </span><span style="color:#a61717;background-color:#e3d2d2">{</span><span style="color:#ed9d13">&#34;$gt&#34;</span><span style="color:#666"> </span>:<span style="color:#666"> </span><span style="color:#3677a9">1200</span><span style="color:#666"> </span><span style="color:#a61717;background-color:#e3d2d2">}</span><span style="color:#666"> </span>,<span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666">	               </span><span style="color:#a61717;background-color:#e3d2d2">{</span><span style="color:#ed9d13">&#34;$eq&#34;</span><span style="color:#666"> </span>:<span style="color:#666"> </span>[<span style="color:#ed9d13">&#34;$start station id&#34;</span><span style="color:#666"> </span>,<span style="color:#666"> </span><span style="color:#ed9d13">&#34;$end station id&#34;</span>]<span style="color:#666">  </span><span style="color:#a61717;background-color:#e3d2d2">}</span><span style="color:#666"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#666">
+</span></span></span><span style="display:flex;"><span><span style="color:#666"></span>]<span style="color:#666"> </span><span style="color:#a61717;background-color:#e3d2d2">}</span><span style="color:#666"> </span><span style="color:#a61717;background-color:#e3d2d2">}</span><span style="color:#666">
+</span></span></span></code></pre></div><hr>
+<h2 id="array-operators">Array Operators</h2>
+<p>Syntax    : <code>{ &lt;array field&gt; : [ item1, item2 ] }</code></p>
+<p>Example : <code>{&quot;beg&quot; : [&quot;pen&quot;,&quot;book&quot;]}</code></p>
+<p>In array field, index is important.</p>
+<p><code>[&quot;car&quot;,&quot;house&quot;]</code> and <code>[&quot;house&quot;,&quot;car&quot;]</code> will give you different results.</p>
+<p><code>$all</code> will ignore ordering.</p>
+<p>Example : <code>{&quot;beg&quot; : {&quot;$all&quot; : [ &quot;pen&quot;,&quot;book&quot; ] } }</code></p>
+<p><code>$size</code> will return the exact length of given size.</p>
+<p>Example : <code>{&quot;beg&quot; : {&quot;$size&quot; : 2, [ &quot;pen&quot;,&quot;book&quot; ] } }</code></p>
+<hr>
+<h2 id="projection">Projection</h2>
+<p>Projection is used to look only at fields that we are interested.</p>
+<p>Example : <code>{ &quot;amenities&quot;: &quot;WiFi&quot; },{ &quot;price&quot;: 1, &quot;address&quot;: 1, &quot;_id&quot;: 0 }</code></p>
+<p>The first part (<em>highlight in yellow</em>) is what we want to find, while the second part (<em>highlight in green</em>) is what we want to display.</p>
+<p>So, in 2nd part, number <code>1</code> means we want to include that field in the result, number <code>0</code> to exclude from the result.</p>
+<p>Example :</p>
+<p>Q : Find one document in the collection and only include the address field in the resulting cursor.</p>
+<p>Ans :  <code>db.listingsAndReviews.findOne({ },{ &quot;address&quot;: 1, &quot;_id&quot;: 0 })</code></p>
+<h3 id="elemmatch">$elemMatch</h3>
+<p><code>$elemMatch</code> is used to match documents that contain an array field with at least one element that matches the specified query criteria.</p>
+<p>Syntax    : <code>{ &lt;field&gt; : { &quot;$elemMatch&quot; : { &lt;field&gt; : &lt;value&gt; }}}</code></p>
+<p>Example : <code>{ &quot;scores&quot;: { &quot;$elemMatch&quot;: { &quot;type&quot;: &quot;exam&quot; } }}</code></p>
+<hr>
+<h2 id="array-operators-and-sub-documents">Array Operators and Sub-Documents</h2>
+<p>MQL uses dot-notion (<code>.</code>) to specify the address of nested elements in a document.</p>
+<p>To use dot-notion in arrays, specify the position of the element in the array.</p>
+<p>Example : <code>{&quot;start station location.coordinates.0&quot;:-73.97966069}</code></p>
+<hr>
+<h2 id="aggregation-framework-101">Aggregation Framework 101</h2>
+<p>To use aggregation framework, we use <code>aggregate</code> instead of <code>find</code>.</p>
+<p>With the aggregation framework, we can calculate, reshape, reorganize data.</p>
+<p><em>Syntax Comparison</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>db.listingsAndReviews.find(
+</span></span><span style="display:flex;"><span>				{ &#34;amenities&#34; : &#34;WiFi&#34; },
+</span></span><span style="display:flex;"><span>				{ &#34;price&#34; : 1 , &#34;address&#34; : 1 , &#34; _id &#34; : 0 }).pretty()
+</span></span></code></pre></div><pre tabindex="0"><code>db.listingsAndReviews.aggregate([
+				{ &#34;$match&#34; : { &#34;amenities&#34; : &#34;WiFi&#34; }},
+				{ &#34;$project&#34; : { &#34;price&#34; : 1 , &#34;address&#34; : 1 , &#34; _id &#34; : 0 }}
+])
+</code></pre><p>The aggregation framework works as a pipeline, where the order of the actions in the pipeline matters.</p>
+<p><img src="MongoDB%20Basics%2067c759e006ba4516a6326ff2caeff2f8/Untitled.png" alt="MongoDB%20Basics%2067c759e006ba4516a6326ff2caeff2f8/Untitled.png"></p>
+<h3 id="introducing-the-group-stage">Introducing the $group stage</h3>
+<p><code>$group</code> : An operator that takes the incoming stream of data, and siphons it into multiple distinct reservoirs.</p>
+<p><img src="MongoDB%20Basics%2067c759e006ba4516a6326ff2caeff2f8/Untitled%201.png" alt="MongoDB%20Basics%2067c759e006ba4516a6326ff2caeff2f8/Untitled%201.png"></p>
+<p>Syntax :</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>{&#34;$group&#34;:
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		_id : &lt;<span style="color:#6ab825;font-weight:bold">expression</span>&gt;, //group by expression
+</span></span><span style="display:flex;"><span>		&lt;<span style="color:#6ab825;font-weight:bold">field1</span>&gt; : { &lt;<span style="color:#6ab825;font-weight:bold">accumulator1</span>&gt;,&lt;<span style="color:#6ab825;font-weight:bold">expression1</span>&gt; },
+</span></span><span style="display:flex;"><span>		... 
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We can give custom field name in <code>$group</code>&rsquo;s second part (<em>highlight in yellow</em>) .</p>
+<p>Examples :</p>
+<p><em>Q1 : Project only the address field value for each document, then group all documents into one document per address.country value.</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>db.listingsAndReviews.aggregate([ { &#34;$project&#34;: { &#34;address&#34;: 1, &#34;_id&#34;: 0 }},
+</span></span><span style="display:flex;"><span>                                  { &#34;$group&#34;: { &#34;_id&#34;: &#34;$address.country&#34; }}])
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>{ &#34;_id&#34; : &#34;Canada&#34; }
+</span></span><span style="display:flex;"><span>{ &#34;_id&#34; : &#34;Hong Kong&#34; }
+</span></span><span style="display:flex;"><span>{ &#34;_id&#34; : &#34;Spain&#34; }
+</span></span><span style="display:flex;"><span>{ &#34;_id&#34; : &#34;Turkey&#34; }
+</span></span><span style="display:flex;"><span>{ &#34;_id&#34; : &#34;China&#34; }
+</span></span><span style="display:flex;"><span>{ &#34;_id&#34; : &#34;Brazil&#34; }
+</span></span><span style="display:flex;"><span>{ &#34;_id&#34; : &#34;United States&#34; }
+</span></span><span style="display:flex;"><span>{ &#34;_id&#34; : &#34;Australia&#34; }
+</span></span><span style="display:flex;"><span>{ &#34;_id&#34; : &#34;Portugal&#34; }
+</span></span></code></pre></div><p><em>Q2 : Project only the address field value for each document, then group all documents into one document per address.country value, and count one for each document in each group.</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>db.listingsAndReviews.aggregate([
+</span></span><span style="display:flex;"><span>                                  { &#34;$project&#34;: { &#34;address&#34;: 1, &#34;_id&#34;: 0 }},
+</span></span><span style="display:flex;"><span>                                  { &#34;$group&#34;: { &#34;_id&#34;: &#34;$address.country&#34;,
+</span></span><span style="display:flex;"><span>                                                &#34;count&#34;: { &#34;$sum&#34;: 1 } } }//here we give 1 to allow $sum.
+</span></span><span style="display:flex;"><span>                                ])
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>{ &#34;_id&#34; : &#34;Portugal&#34;, &#34;count&#34; : 555 }
+</span></span><span style="display:flex;"><span>{ &#34;_id&#34; : &#34;Spain&#34;, &#34;count&#34; : 633 }
+</span></span><span style="display:flex;"><span>{ &#34;_id&#34; : &#34;Hong Kong&#34;, &#34;count&#34; : 600 }
+</span></span><span style="display:flex;"><span>{ &#34;_id&#34; : &#34;China&#34;, &#34;count&#34; : 19 }
+</span></span><span style="display:flex;"><span>{ &#34;_id&#34; : &#34;Turkey&#34;, &#34;count&#34; : 661 }
+</span></span><span style="display:flex;"><span>{ &#34;_id&#34; : &#34;United States&#34;, &#34;count&#34; : 1222 }
+</span></span><span style="display:flex;"><span>{ &#34;_id&#34; : &#34;Brazil&#34;, &#34;count&#34; : 606 }
+</span></span><span style="display:flex;"><span>{ &#34;_id&#34; : &#34;Canada&#34;, &#34;count&#34; : 649 }
+</span></span><span style="display:flex;"><span>{ &#34;_id&#34; : &#34;Australia&#34;, &#34;count&#34; : 610 }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>//this means there&#39;re 555 documents that have &#34;Portugal&#34; in address.
+</span></span></code></pre></div><p>This image will clarify what we did.</p>
+<p><img src="MongoDB%20Basics%2067c759e006ba4516a6326ff2caeff2f8/group_sum.jpeg" alt="MongoDB%20Basics%2067c759e006ba4516a6326ff2caeff2f8/group_sum.jpeg"></p>
+<p><em>Note : Non-filtering stages do not modify the original data when they do the summaries,calculation and grouping of data.Instead they work with the data that they get from the previous stage in the pipeline, which is in its own cursor.</em></p>
+<hr>
+<h2 id="sorting-and-limit">Sorting and Limit</h2>
+<h3 id="sorting">Sorting</h3>
+<p>In MongoDB, sorting is done by the <code>sort()</code> method.</p>
+<p>The <code>sort()</code> method consists of two basic building blocks, <em>1. fields to be sorted 2. the sort order</em></p>
+<p>The sorting order in MongoDB is defined by either a one (<code>1</code>) or minus one (<code>-1</code>).</p>
+<p><em>+1 : Ascending order</em></p>
+<p><em>-1 : Descending order</em></p>
+<p>Syntax    : <code>db.collection_name.find().sort( { field_name : sort_order } )</code></p>
+<p>Example : <code>db.zips.find().sort({ &quot;pop&quot;: 1 })</code></p>
+<h3 id="sorting-using-multiple-fields">Sorting using multiple fields</h3>
+<p>The query will be sorted according to the declaration position of the fields, where sort order is evaluated from left to right.</p>
+<p>Syntax    : <code>db.collection_name.find().sort( { field_name1 : sort_order , field_name2 : sort order } )</code></p>
+<p>Example : <code>db.zips.find().sort({ &quot;pop&quot;: 1 , &quot;zip&quot;:1 })</code></p>
+<h3 id="sorting-with-the-limit-method">Sorting with the limit() method</h3>
+<p><code>limit()</code> method limits the number of results in the search query.</p>
+<p>Just pass an integer into <code>limit()</code> method.</p>
+<p>Syntax    : <code>db.collection_name.find().sort( { field_name : sort_order } ).limit(n)</code></p>
+<p>Example : <code>db.zips.find().sort({ &quot;pop&quot;: 1 }).limit(2)</code></p>
+<p><em>Note : While the limit() and sort() methods are not listed in the correct order, MongoDB flips their order when executing the query, delivering the results that the question prompt is looking for.</em></p>
+<p><em>That is <code>find().sort().limit()</code> is equal to <code>find().limit().sort()</code></em></p>
+<hr>
+<h2 id="indexing-and-aggregation-pipeline">Indexing and Aggregation Pipeline</h2>
+<h3 id="introduction-to-indexes">Introduction to Indexes</h3>
+<p>In database, special data structure that stores a small portion of the collection&rsquo;s data set in an easy to traverse form.</p>
+<p>Indexes support the efficient resolution of queries. Without indexes, MongoDB must scan every document of a collection to select those documents that match the query statement. This scan is highly inefficient and require MongoDB to process a large volume of data.</p>
+<p>To create an index, you need to use <code>createIndex()</code> method of MongoDB.</p>
+<p>Syntax : <code>db.collection_name.createIndex({KEY:1})</code></p>
+<p><code>KEY</code> is the name of the field on which you want to create index.</p>
+<p><em>+1 : Ascending order</em></p>
+<p><em>-1 : Descending order</em></p>
+<p>Example : <code>db.trips.createIndex({ &quot;birth year&quot;: 1 })</code></p>
+<pre><code>        `db.trips.createIndex({ &quot;start station id&quot;: 1, &quot;birth year&quot;: 1 })`
+</code></pre>
+<p><em>When it is a simple single-field index, It doesn&rsquo;t really matter whether the index was created in increasing or decreasing order.</em></p>
+<hr>
+<h3 id="introduction-to-data-modeling">Introduction to Data Modeling</h3>
+<p><em><strong>Data modeling</strong></em> is a way to organize fields in a document to support your application performance and querying capabilities.</p>
+<p><em>Data Modeling with MongoDB</em></p>
+<ul>
+<li>Data that is used together should be store together.</li>
+<li>Evolving application implies an evolving data model.</li>
+</ul>
+<p><a href="https://www.notion.so/MongoDB-Basics-6f502173b5e9439a86cb42022c059dfd-92775f3203e84f19a5eb320c6b394526">MongoDB Basics 6f502173b5e9439a86cb42022c059dfd</a></p>
+
+      <ul class="flex list-none mt-20 ml-0 p-0">
+  
+</ul>
+
+    </section>
+
+    <div class="mt-20">
+
+
+</div>
+  </article>
+</main>
+  <footer class="container mt-20 py-10 border-t border-gray-700">
+    <a class="flex items-center">
+  Made with &lt;3 by ZuS. 
+  <br>Powered by Hugo<a href="https://gohugo.io/">
+</a>
+
+
+  </footer>
+</body>
+
+</html>
