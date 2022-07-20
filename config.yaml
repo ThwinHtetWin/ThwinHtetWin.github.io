@@ -1,0 +1,41 @@
+baseurl: /
+title: ZuS-Sec
+theme: photophobia
+sectionPagesMenu: main
+Params:
+  favicon: null
+  site_logo: null
+  description:  ""
+  recent_posts_number: 10
+  author: Thwin Htet Win a.k.a ZuS
+  mainSections:
+    - post
+  intro: true
+  description: 'someone in the crowd'
+  github: 'https://github.com/ThwinHtetWin'
+  twitter: 'https://twitter.com/thwinhtet_'
+  email: 'thwinhtetwin.me@gmail.com'
+  opengraph: true
+  shareTwitter: true
+  dateFormat: 'Mon, Jan 2, 2006'
+Permalinks:
+  post: '/:filename/'
+
+markup:
+  highlight:
+    style: native
+
+taxonomies:
+  category: "categories"
+
+menu:
+  nav:
+    - identifier: about
+      name: About
+      url: /about/
+      weight: 2
+    - identifier: connect
+      name: Connect
+      url: /connect/
+      weight: 3
+
