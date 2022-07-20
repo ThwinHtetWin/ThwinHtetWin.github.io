@@ -1,9 +1,5 @@
 baseurl: /
-<<<<<<< HEAD
-title: ZuS-Sec
-=======
 title: who knows?
->>>>>>> 247187d (new post)
 theme: photophobia
 sectionPagesMenu: main
 Params:
@@ -11,11 +7,7 @@ Params:
   site_logo: null
   description:  ""
   recent_posts_number: 10
-<<<<<<< HEAD
-  author: Thwin Htet Win a.k.a ZuS
-=======
   author: Thwin Htet Win
->>>>>>> 247187d (new post)
   mainSections:
     - post
   intro: true
