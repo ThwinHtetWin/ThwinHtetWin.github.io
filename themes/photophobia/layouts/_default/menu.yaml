@@ -1,7 +1,0 @@
-main:
-  - name: Home
-    url: /
-    weight: 10
-  - name: AboutMe
-    url: about-me/
-    weight: 20
